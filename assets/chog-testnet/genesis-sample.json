@@ -1,0 +1,55 @@
+{
+  "name": "CHOG #1462",
+  "description": "CHOG \u2014 a 1969-piece collection on Monad.",
+  "image": "ipfs://bafybeihau2egcccbdxymeckmmbrqytbfor5gkt3en6d5fsbueymdbq7g6e/1462.webp",
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Deep Aqua"
+    },
+    {
+      "trait_type": "Base",
+      "value": "Origin"
+    },
+    {
+      "trait_type": "Skin",
+      "value": "Pink"
+    },
+    {
+      "trait_type": "Side",
+      "value": "Left"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Yellow 143 Jersey"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Flat"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "BTC Glass"
+    },
+    {
+      "trait_type": "Head",
+      "value": "MCGA"
+    },
+    {
+      "trait_type": "Accessory",
+      "value": "Fwog"
+    },
+    {
+      "trait_type": "Form",
+      "value": "Chog"
+    },
+    {
+      "trait_type": "Tier",
+      "value": "Uncommon"
+    },
+    {
+      "trait_type": "Naked",
+      "value": "No"
+    }
+  ]
+}

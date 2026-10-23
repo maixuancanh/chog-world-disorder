@@ -1,0 +1,1 @@
+{"name":"chog-relay-cloud","private":true,"type":"module","dependencies":{"ethers":"6.16.0","libsql":"0.5.29","puppeteer-core":"25.12.0"},"overrides":{"ws":"8.21.0"}}

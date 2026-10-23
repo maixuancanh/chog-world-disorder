@@ -1,0 +1,46 @@
+{
+  "name": "chog-world-disorder",
+  "productName": "CHOG World Disorder",
+  "version": "1.1.0",
+  "description": "CHOG NFT browser game with Trait Hunt, Boss Battle, Trait Control and Daily Trials.",
+  "main": "electron/main.cjs",
+  "scripts": {
+    "serve": "node tools/py.mjs tools/serve.py",
+    "build": "node tools/py.mjs tools/build-dist.py && node tools/bundle.mjs && node tools/chog/build-game-bundle.mjs",
+    "check": "node tools/check-syntax.mjs",
+    "test": "node --test tools/chog/*.test.mjs",
+    "hunt-relay": "node server/hunt-relay.mjs",
+    "contracts:test": "npm --prefix contracts/demo test"
+  },
+  "keywords": [
+    "game",
+    "three.js",
+    "webgl",
+    "shooter",
+    "splatoon",
+    "turf-war",
+    "browser-game"
+  ],
+  "license": "MIT",
+  "type": "module",
+  "homepage": "https://chog-world-disorder.vercel.app/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/maixuancanh/chog-world-disorder.git"
+  },
+  "bugs": {
+    "url": "https://github.com/maixuancanh/chog-world-disorder/issues"
+  },
+  "dependencies": {
+    "three": "^0.186.0",
+    "ethers": "6.16.0",
+    "libsql": "0.5.29"
+  },
+  "devDependencies": {
+    "puppeteer-core": "25.12.0",
+    "esbuild": "0.25.12"
+  },
+  "overrides": {
+    "ws": "8.21.0"
+  }
+}

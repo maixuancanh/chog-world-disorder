@@ -1,0 +1,12 @@
+{
+  "title": "cute coin 3d model",
+  "caption": "yellow coin with a sunflower-faced character, ridged edge, 3D stylized model",
+  "author": "nekrsvug3715",
+  "sourceFile": "cute_coin_3d_model.glb",
+  "sha256": "a8b1aa888be8b181cfaa4005810c3e94141b4d08341df07f7037652072bb6adc",
+  "format": "glTF 2.0",
+  "extensions": [
+    "KHR_mesh_quantization",
+    "EXT_meshopt_compression"
+  ]
+}

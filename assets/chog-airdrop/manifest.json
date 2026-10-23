@@ -1,0 +1,25 @@
+{
+  "source": "parachute_loot_chest_3d_model.glb",
+  "sha256": "c593c3623161fd210a2a9316f385523113da44d70fe05a95a5965152b803c88d",
+  "changes": [
+    "Restore original source chest body, lid, bands, seam, medallion and UVs; no generated lid",
+    "Repair only four suspension attachment rings",
+    "Rebuild 12 alternating orange-purple canopy panels, including back",
+    "8 continuous ivory suspension cords",
+    "Separate parachute for landing removal",
+    "12 real textured fractured chest pieces"
+  ],
+  "fragments": 12,
+  "chestBounds": [
+    [
+      -0.611025333404541,
+      -0.4623611271381378,
+      0.0
+    ],
+    [
+      0.5914861559867859,
+      0.5088905096054077,
+      0.9798263311386108
+    ]
+  ]
+}

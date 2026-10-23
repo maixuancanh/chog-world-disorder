@@ -1,0 +1,24 @@
+{
+  "width": 2.6,
+  "depth": 1.8,
+  "seamHeight": 0.96,
+  "hinge": [
+    0,
+    0.96,
+    -0.8
+  ],
+  "openAngle": 105,
+  "sources": {
+    "ChogChestBody": {
+      "file": "toy_chest_3d_model.glb",
+      "actualFormat": "FBX binary 7400",
+      "sha256": "282456f19cd061c5dc8dd7daa5e247612ef9f9c1d104d7cde2c70fdcd7d716fb"
+    },
+    "ChogChestLid": {
+      "file": "futuristic_capsule_3d_model.glb",
+      "actualFormat": "FBX binary 7400",
+      "sha256": "b6e2144819ba63fba51e093863a26f89f3c4ee9683ce74e47f83c8a298fcfa4e"
+    }
+  },
+  "lidRepair": "Boolean-opened underside; recessed arched purple lining and end walls. Cream lip added by runtime assembly."
+}

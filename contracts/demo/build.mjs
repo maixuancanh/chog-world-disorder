@@ -1,0 +1,14 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import solc from 'solc';
+import { build } from 'esbuild';
+const here=path.dirname(fileURLToPath(import.meta.url)),root=path.resolve(here,'../..');
+const input={language:'Solidity',sources:{'ChogDemo.sol':{content:fs.readFileSync(path.join(here,'ChogDemo.sol'),'utf8')}},settings:{optimizer:{enabled:true,runs:200},evmVersion:'paris',outputSelection:{'*':{'*':['abi','evm.bytecode.object','evm.deployedBytecode.object']}}}};
+const output=JSON.parse(solc.compile(JSON.stringify(input),{import:p=>({contents:fs.readFileSync(path.join(here,'node_modules',p),'utf8')})}));
+for(const e of output.errors||[])if(e.severity==='error')throw new Error(e.formattedMessage);
+const artifacts={compiler:solc.version(),evmVersion:'paris',demoTokenURI:fs.readFileSync(path.join(root,'assets/chog-testnet/demo-token-uri.txt'),'utf8').trim()};
+for(const [name,c] of Object.entries(output.contracts['ChogDemo.sol']))artifacts[name]={abi:c.abi,bytecode:'0x'+c.evm.bytecode.object,runtime:'0x'+c.evm.deployedBytecode.object};
+fs.writeFileSync(path.join(root,'assets/chog-testnet/contracts.json'),JSON.stringify(artifacts,null,2)+'\n');
+await build({stdin:{contents:'export { BrowserProvider, Contract, ContractFactory, formatUnits, parseUnits, isAddress, getAddress, keccak256 } from "ethers";',resolveDir:here},bundle:true,format:'esm',minify:true,legalComments:'eof',outfile:path.join(root,'assets/chog-testnet/ethers.js')});
+console.log(JSON.stringify({compiler:artifacts.compiler,bootstrapBytes:artifacts.DemoBootstrap.bytecode.length/2-1,nftRuntimeBytes:artifacts.ChogDemoNFT.runtime.length/2-1,metadataBytes:artifacts.demoTokenURI.length}));

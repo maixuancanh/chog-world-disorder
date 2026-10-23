@@ -1,0 +1,31 @@
+{
+  "nft": "varsity",
+  "source": "source.glb",
+  "sha256": "605986bca24ad6e826bc9d273c645ea0a2f03f17f550d581f00ff5fcf18f27db",
+  "vertices": 1013777,
+  "bones": 22,
+  "rigSource": "chog-base-rig.blend",
+  "exactRestRigPreserved": false,
+  "normalizedHeight": 1.48,
+  "sourceBounds": [
+    [
+      -0.106658935546875,
+      -0.2234954833984375,
+      -0.489654541015625
+    ],
+    [
+      0.10662078857421875,
+      0.223785400390625,
+      0.490081787109375
+    ]
+  ],
+  "scale": 1.5106105158235734,
+  "unweightedVertices": 0,
+  "maxWeightSumError": 2.220446049250313e-16,
+  "rigidHead": true,
+  "maxInfluences": 4,
+  "solver": "Existing armature; bone heat on voxel proxy, nearest weight transfer; rigid head transition; isolated arm/leg weights with smooth elbow, wrist, knee and ankle blends; rigid shoes; render topology unchanged; arm pivots fitted to mesh cross sections, wrist at 0.65",
+  "gameVertices": 99355,
+  "meshReductionRatio": 0.075,
+  "armPivotsFitted": true
+}

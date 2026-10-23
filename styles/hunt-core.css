@@ -1,0 +1,297 @@
+.hunt-ui{position:fixed;inset:0;z-index:30;pointer-events:none;color:#fff8ef;font:800 16px/1.3 ChogText,sans-serif}
+.hunt-ui [hidden],.chog-original-hud [hidden]{display:none!important}.hunt-ui.is-results{visibility:hidden}
+.hunt-board{position:absolute;left:50%;top:50%;width:min(64vh,520px);aspect-ratio:1295/1215;transform:translate(-50%,-50%);transition:left .65s,top .65s,transform .65s;transform-origin:50% 50%;filter:drop-shadow(0 8px 10px #08020b77)}.hunt-board.is-docked{left:calc(100% - 110px);top:calc(50% - 20px);transform:translate(-50%,-50%) scale(.38)}.hunt-board-bg{position:absolute;inset:0;width:100%;height:100%}.hunt-board-title{position:absolute;left:17%;top:18%;width:66%;height:16%;display:flex;align-items:center;justify-content:center;margin:0;background:url('../assets/chog-briefing-ui/v1/title-backing.png') center/100% 100% no-repeat;color:#27122f;white-space:pre-line;text-align:center;font:clamp(26px,5vh,47px)/.95 ChogDisplay,sans-serif;letter-spacing:.02em}.hunt-board.is-carrier .hunt-board-title{top:17%;height:23%;font-size:clamp(25px,4.5vh,43px)}.hunt-board-portrait{position:absolute;left:27.5%;top:35%;width:45%;height:44%}.hunt-board-portrait>img{position:absolute;inset:10%;width:80%;height:80%;object-fit:cover;background:#402450}.hunt-board-portrait .hunt-image-border{inset:0;width:100%;height:100%;background:none}.hunt-board-name{position:absolute;left:19.5%;top:78%;width:61%;height:11%;display:grid;place-items:center;background:url('../assets/chog-briefing-ui/v1/nameplate.png') center/100% 100%;font:32px ChogDisplay,sans-serif;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.hunt-board-nft{position:absolute;top:90%;left:20%;width:60%;text-align:center;font:22px ChogDisplay,sans-serif}.hunt-board-objective{position:absolute;top:40%;width:100%;text-align:center;font:24px ChogDisplay,sans-serif;color:#24182f}.hunt-board-traits{position:absolute;left:25%;top:52%;width:50%;height:35%;display:grid;grid-template-columns:1fr 1fr;gap:14px}.hunt-board-trait{position:relative;min-height:0;background:#26162c;border:3px solid #ffe5b9;border-radius:9px;text-align:center;display:flex;flex-direction:column;align-items:center}.hunt-board-trait img{width:75%;height:70%;object-fit:contain}.hunt-board-trait span{font:14px ChogDisplay,sans-serif}.hunt-board-trait b{position:absolute;bottom:-17px;right:-6px;color:#adff81;font-size:25px;text-shadow:0 2px #142307}.hunt-hold{position:absolute;left:0;top:0;width:64px;height:64px;border-radius:50%;background:conic-gradient(#ffb52e var(--progress,0deg),#342347cc 0);padding:5px;text-align:center}.hunt-hold b{display:grid;place-items:center;width:100%;height:100%;background:#21152f;border-radius:50%;font:27px ChogDisplay,sans-serif}.hunt-hold span{position:absolute;top:80px;left:50%;transform:translateX(-50%);white-space:nowrap;background:#21152f;padding:4px 10px;border-radius:6px;font-size:11px}.hunt-stun{position:absolute;top:0;left:0;width:105px}.hunt-stun img{width:100%;height:auto}.hunt-stun span{display:block;height:6px;background:#271735;border:1px solid #f8d9ff;border-radius:6px;margin:0 12px;overflow:hidden}.hunt-stun i{display:block;height:100%;background:linear-gradient(90deg,#8548e8,#ffb330)}.hunt-flying-trait{position:fixed;top:0;left:0;width:84px;height:84px;object-fit:contain;z-index:40;pointer-events:none;filter:drop-shadow(0 0 12px #ffd780)}
+/* Adapt the existing game HUD instead of replacing its timer, reticle, roster or minimap. */
+:is(.chog-hunt-live,.chog-raid-hud) .iw-timer__blob{border-radius:38% 48% 35% 45% / 45% 38% 50% 42%}
+.chog-hunt-live .iw-sp__pct{font-size:calc(var(--u)*1.15);white-space:nowrap;width:80%;text-align:center}
+.chog-hunt-live .iw-sp__icon{opacity:.7}.chog-hunt-live .iw-sp__icon img{width:100%;height:100%;object-fit:contain}
+.chog-hunt-live .iw-sp__ready{display:none}.chog-hunt-live .iw-turf{top:calc(var(--u)*10);right:calc(var(--u)*2.2)}
+.chog-hunt-live .iw-turf small{font-size:var(--fs-xs)}
+.chog-hunt-live .chog-native-traits{bottom:calc(var(--u)*6);gap:calc(var(--u)*.6)}
+.chog-hunt-trait-slot{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:calc(var(--u)*6.3);padding:calc(var(--u)*.4);border:2px solid #78668c;border-radius:8px;background:#21152c;gap:3px}
+.chog-hunt-trait-slot img{width:calc(var(--u)*4.5);height:calc(var(--u)*4.5);object-fit:contain;opacity:.15;filter:grayscale(1)}
+.chog-hunt-trait-slot small{font-size:calc(var(--u)*.7);white-space:nowrap}
+.chog-hunt-trait-slot.is-found{border-color:#ffac28}.chog-hunt-trait-slot.is-found img{opacity:1;filter:none}
+.chog-hunt-trait-slot .chog-hunt-trait-tick{position:absolute;right:-5px;bottom:-12px;display:none;background:#417540;color:white;padding:0 .25em;border-radius:50%}
+.chog-hunt-trait-slot.is-found .chog-hunt-trait-tick{display:block}
+.chog-hunt-exhausted .iw-spl__hint{display:flex;flex-direction:column;gap:12px;border-radius:12px;padding:12px 22px;pointer-events:auto}
+.chog-hunt-out-actions{display:flex;gap:18px}.chog-hunt-out-actions .iw-btn{min-width:210px;font-size:18px;height:62px;pointer-events:auto}
+.chog-hunt-out-balance{margin:0;font-size:14px}.chog-hunt-exhausted .iw-spl__ring .fg{stroke-dashoffset:277!important}
+.chog-hunt-results .iw-res__head,.chog-hunt-results .iw-res__body{z-index:2;pointer-events:none}
+.chog-hunt-results .iw-res__body{justify-content:flex-end}.chog-hunt-results .iw-res__btns{pointer-events:auto}.chog-hunt-results .iw-res__foot{justify-content:flex-end}
+.chog-hunt-results .iw-res__scrim{z-index:1;pointer-events:none;background:linear-gradient(#160b2633,transparent 25%,transparent 75%,#160b2688)}
+.chog-hunt-reward-host{position:absolute;inset:0;z-index:0}
+.chog-hunt-reward-stage{position:absolute;z-index:0}.chog-hunt-reward-stage .mythic-header,.chog-hunt-reward-stage .mythic-footer{display:none}
+.hunt-touch-open{display:none;pointer-events:auto;position:absolute;right:28px;bottom:160px;border:2px solid white;border-radius:50%;width:85px;height:85px;color:#231230;background:#ffb32e;font-weight:bold}
+@media(pointer:coarse){.hunt-touch-open{display:block}}
+@media(max-width:800px){.hunt-board.is-docked{left:calc(100% - 82px);top:240px;transform:translate(-50%,-50%) scale(.3)}.chog-hunt-out-actions{gap:10px}.chog-hunt-out-actions .iw-btn{min-width:150px;font-size:14px}}
+
+.hunt-flying-coin{width:64px;height:64px;z-index:50}.hunt-coin-gain{position:fixed;z-index:51;pointer-events:none;font:22px ChogDisplay,sans-serif;color:#ffca59;text-shadow:0 2px 3px #24102f;white-space:nowrap}
+
+.iw-touch .iw-touch__btn[hidden]{display:none!important}
+
+/* Keep the original monochrome badge and motion layers; alter silhouette only. */
+:is(.chog-hunt-live,.chog-raid-hud) .iw-hud__top{gap:calc(var(--u)*1.1);align-items:flex-start}
+:is(.chog-hunt-live,.chog-raid-hud) .iw-squad{gap:calc(var(--u)*.7)}
+:is(.chog-hunt-live,.chog-raid-hud) .iw-sq{width:calc(var(--u)*4.4);height:calc(var(--u)*5.7);display:block}
+:is(.chog-hunt-live,.chog-raid-hud) .iw-sq__badge{inset:0 0 auto;height:calc(var(--u)*4.4);background:none;border:0;border-radius:0;overflow:visible;box-shadow:none;transform:none}
+:is(.chog-hunt-live,.chog-raid-hud) .iw-sq__shape{display:block}
+:is(.chog-hunt-live,.chog-raid-hud) .iw-sq__w{inset:21% 17% 17%;border-radius:0;clip-path:polygon(10% 0,80% 0,100% 20%,100% 85%,85% 100%,0 100%,0 20%)}
+:is(.chog-hunt-live,.chog-raid-hud) .iw-sq__w img{width:100%;height:100%;object-fit:cover;object-position:top}
+:is(.chog-hunt-live,.chog-raid-hud) .iw-sq__you{top:calc(var(--u)*-.8);bottom:auto}
+:is(.chog-hunt-live,.chog-raid-hud) .iw-sq__x{inset:13% 18% auto;height:calc(var(--u)*2.5);z-index:4}
+:is(.chog-hunt-live,.chog-raid-hud) .iw-sq__ring{inset:-8% -8% auto;height:calc(var(--u)*4.8)}
+:is(.chog-hunt-live,.chog-raid-hud) .iw-sq__spark{inset:-15% -15% auto;height:calc(var(--u)*5.7)}
+:is(.chog-hunt-live,.chog-raid-hud) .iw-sq__n{display:none}
+:is(.chog-hunt-live,.chog-raid-hud) .iw-sq.is-dead .iw-sq__ring{display:none}
+:is(.chog-hunt-live,.chog-raid-hud) .iw-sq.is-dead .iw-sq__shape .f{fill:#686775;stroke:#dad9df}
+:is(.chog-hunt-live,.chog-raid-hud) .iw-sq.is-dead .iw-sq__w{opacity:.25;filter:grayscale(1)}
+.chog-sq-name{position:absolute;left:-10%;top:calc(var(--u)*4.55);width:120%;text-align:center;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font:800 calc(var(--u)*.7)/1.2 ChogText,sans-serif;text-shadow:0 2px 2px #140c20}
+.chog-sq-status{position:absolute;z-index:5;left:-8%;top:calc(var(--u)*3.45);rotate:-7deg;padding:4px 7px;color:#fff;background:#21142e;font:900 calc(var(--u)*.51)/1.1 ChogText,sans-serif;letter-spacing:.04em;clip-path:var(--chog-name-tag-shape);border-bottom:2px solid var(--tc)}
+:is(.chog-hunt-live,.chog-raid-hud) .iw-timer{width:calc(var(--u)*10.5);height:calc(var(--u)*4.9);padding:0 0 calc(var(--u)*.5)}
+:is(.chog-hunt-live,.chog-raid-hud) .iw-timer__blob{--clock-shape:polygon(12% 0,30% 8%,70% 8%,88% 0,100% 50%,89% 100%,70% 92%,30% 92%,11% 100%,0 50%);inset:0;transform:none;border:0;border-radius:0;clip-path:var(--clock-shape);background:var(--k);box-shadow:none}
+:is(.chog-hunt-live,.chog-raid-hud) .iw-timer__blob::before,:is(.chog-hunt-live,.chog-raid-hud) .iw-timer__blob::after{content:"";position:absolute;inset:0;clip-path:var(--clock-shape);background:#fff}
+:is(.chog-hunt-live,.chog-raid-hud) .iw-timer__blob::after{inset:3px;background:inherit}
+:is(.chog-hunt-live,.chog-raid-hud) .iw-timer__drip{display:none}
+:is(.chog-hunt-live,.chog-raid-hud) .iw-timer__txt{font-size:calc(var(--u)*2.3)}
+:is(.chog-hunt-live,.chog-raid-hud) .iw-timer:after{content:'TRAIT HUNT';position:absolute;bottom:-4px;left:18%;width:64%;padding:3px 0;background:#21142e;color:#fff;text-align:center;rotate:-2deg;font:800 calc(var(--u)*.53) ChogText,sans-serif;clip-path:polygon(3% 0,97% 0,100% 50%,96% 100%,4% 100%,0 50%)}
+.chog-hunt-pause .iw-pstat{min-width:calc(var(--u)*4)}
+.chog-hunt-pause .iw-rrow__st{font-size:calc(var(--u)*.6);font-weight:900;white-space:nowrap}
+/* Reserve a full row for balance; compact feed begins below it. */
+.chog-hunt-live .iw-turf{top:calc(var(--u)*10.5);right:calc(var(--u)*2.2);min-width:calc(var(--u)*12);min-height:max(calc(var(--u)*4.2),48px);padding:.55em .8em;gap:.4em;border:2px solid #fff0d2;border-radius:12px 5px 12px 5px;background:#21142ef2;box-shadow:0 4px #100c1b;align-items:center;justify-content:flex-end}
+.chog-hunt-live .iw-turf b{font-size:calc(var(--u)*1.9)}
+.chog-hunt-live .iw-turf i{width:calc(var(--u)*2.1);height:calc(var(--u)*2.1);margin-right:auto}
+.chog-hunt-live .iw-turf small{font-size:calc(var(--u)*.85)}
+.chog-hunt-live .iw-feed{top:calc(var(--u)*10.5 + max(var(--u)*4.2,48px) + 14px);max-width:min(27vw,330px);gap:5px}
+.chog-hunt-live .iw-feed__item{max-width:100%;font-size:clamp(10px,calc(var(--u)*.68),13px);padding:6px 10px 6px 6px;line-height:1.3;border-radius:8px;white-space:normal;margin-bottom:0}
+.chog-hunt-live .iw-feed__icon{flex:none;width:1.5em;height:1.5em}
+body.chog-hunt-playing .iw-toasts{top:calc(var(--u)*10.5 + max(var(--u)*4.2,48px) + 14px);max-width:min(27vw,330px)}
+body.chog-hunt-playing .iw-toast{font-size:clamp(10px,calc(var(--u)*.68),13px);max-width:100%;padding:6px 10px}
+/* Pause/settings/help own the entire interface; even body-level flights are hidden. */
+body.chog-pause-cover .iw-hud,body.chog-pause-cover .iw-hud-over,body.chog-pause-cover .hunt-ui,body.chog-pause-cover .hunt-flying-trait,body.chog-pause-cover .hunt-coin-gain,body.chog-pause-cover .iw-toasts,body.chog-pause-cover .iw-touch{display:none!important;visibility:hidden!important;transition:none!important;pointer-events:none!important}
+@media(max-width:800px){:is(.chog-hunt-live,.chog-raid-hud) .iw-sq{width:calc(var(--u)*3.7)}:is(.chog-hunt-live,.chog-raid-hud) .iw-sq__badge{height:calc(var(--u)*3.7)}:is(.chog-hunt-live,.chog-raid-hud) .chog-sq-name{top:calc(var(--u)*4);font-size:calc(var(--u)*.6)}:is(.chog-hunt-live,.chog-raid-hud) .chog-sq-status{top:calc(var(--u)*2.8);font-size:calc(var(--u)*.45);padding:3px 5px}:is(.chog-hunt-live,.chog-raid-hud) .iw-timer{width:calc(var(--u)*8.4)}:is(.chog-hunt-live,.chog-raid-hud) .iw-feed{max-width:38vw}}
+
+/* Carrier briefing: fit the two-line title inside its paint strip. */
+.hunt-board.is-carrier .hunt-board-title{top:18%;height:16%;font-size:clamp(18px,3vh,28px);line-height:.95;padding:0 9%;box-sizing:border-box;background-size:100% 200%}
+.hunt-board-trait{background:#fff;color:#24182f;border-color:#fff}
+.hunt-board-trait span{max-width:95%;font-size:clamp(10px,1.3vh,12px);line-height:1.1;white-space:nowrap}
+
+/* Carrier objective reveal and persistent right-side trait slots. */
+.hunt-trait-intro{position:absolute;left:50%;top:50%;transform:translate(-50%,-15%);display:flex;gap:18px;width:min(88vw,900px);z-index:3}
+.hunt-intro-card{position:relative;flex:1;min-width:0;aspect-ratio:1;background:#fff;border:3px solid #fff;border-radius:12px;box-shadow:0 6px 0 #29183188;display:flex;flex-direction:column;align-items:center;justify-content:center;transform-origin:top left;animation:hunt-trait-arrive .45s cubic-bezier(.2,.8,.3,1.2)}
+.hunt-intro-card img{width:75%;height:72%;object-fit:contain}
+.hunt-intro-card span,.hunt-board-trait span{display:block;color:#fff;background:#291831;border-radius:4px;padding:3px 6px;max-width:96%;box-sizing:border-box;text-align:center;font-family:ChogDisplay,sans-serif}
+.hunt-intro-card span{font-size:clamp(10px,1.5vw,19px)}
+.hunt-board.has-trait-intro .hunt-board-traits{visibility:hidden}
+.hunt-board.is-inventory{opacity:0;pointer-events:none;transition:opacity .25s}
+.chog-hunt-live .chog-hunt-trait-inventory.is-trait-column{position:absolute;left:auto;right:calc(var(--u)*2.2);top:36%;bottom:auto;display:flex;flex-direction:column;width:clamp(86px,8vw,120px);gap:12px;padding:0;background:none;border:0;box-shadow:none;transform:none}
+.chog-hunt-live .is-trait-column .chog-hunt-trait-slot{min-width:0;height:clamp(70px,8.5vh,94px);padding:4px 4px 12px;border:2px solid #fff;background:#fff;border-radius:9px;overflow:visible}
+.chog-hunt-live .is-trait-column .chog-hunt-trait-slot img{width:100%;height:100%;opacity:.2}
+.chog-hunt-live .is-trait-column .chog-hunt-trait-slot small:first-child{display:none}
+.chog-hunt-live .is-trait-column .chog-hunt-trait-slot small:last-of-type{position:absolute;bottom:-7px;left:50%;transform:translateX(-50%);padding:4px 6px;border:1px solid #fff;border-radius:4px;background:#291831;color:#fff;font-size:clamp(8px,.65vw,11px);max-width:115%;white-space:nowrap}
+.chog-hunt-live .is-trait-column .chog-hunt-trait-slot.is-found{border-color:#ffca59;box-shadow:0 0 15px #ffca5966}
+.chog-hunt-live .is-trait-column .chog-hunt-trait-slot.is-found img{opacity:1}
+.is-column-ready{animation:hunt-column-arrive .35s ease-out}
+@keyframes hunt-trait-arrive{from{opacity:0;translate:0 30px;scale:.6}to{opacity:1;translate:0 0;scale:1}}
+@keyframes hunt-column-arrive{from{opacity:0;translate:40px 0}to{opacity:1;translate:0 0}}
+@media(max-height:650px){.chog-hunt-live .chog-hunt-trait-inventory.is-trait-column{top:35%;gap:9px}.chog-hunt-live .is-trait-column .chog-hunt-trait-slot{height:60px}}
+
+.hunt-room-code{width:100%;box-sizing:border-box;border:2px solid #fff;border-radius:8px;background:#21142e;color:#fff;text-align:center;font:32px ChogDisplay,sans-serif;letter-spacing:.35em;padding:12px;text-transform:uppercase;pointer-events:auto}
+.chog-room-pips span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+.chog-hunt-live .is-trait-column .chog-hunt-trait-slot small:last-of-type{width:calc(100% + 12px);max-width:none;white-space:normal;line-height:1.2;overflow:visible}
+.chog-hunt-live .chog-hunt-trait-inventory.is-trait-column{backdrop-filter:none}
+.chog-hunt-live .chog-hunt-trait-inventory.is-trait-column::before{display:none}
+
+/* Trait labels share the avatar role tag silhouette and type treatment. */
+:root{--chog-name-tag-shape:polygon(3% 0,94% 4%,100% 20%,96% 42%,100% 69%,94% 100%,4% 95%,0 71%,3% 48%,0 19%)}
+.hunt-intro-card span,.hunt-board-trait span,.chog-hunt-live .is-trait-column .chog-hunt-trait-slot small:last-of-type{background:#21142e;color:#fff;border:0;border-bottom:2px solid #ed1748;border-radius:0;clip-path:var(--chog-name-tag-shape);rotate:-7deg;padding:5px 8px;font-family:ChogText,sans-serif;font-weight:900;letter-spacing:.04em;text-align:center}
+
+.chog-result-reward{position:absolute;z-index:3;left:calc(var(--u)*3.8);bottom:calc(var(--u)*3);display:flex;flex-direction:column;gap:8px;color:white;pointer-events:none;text-shadow:0 2px 4px #160b26}
+.chog-result-reward strong{font:clamp(30px,4vw,56px)/1 ChogDisplay,sans-serif;color:#ffd17e}
+.chog-result-reward small{font:800 14px/1.4 ChogText,sans-serif}
+@media(max-width:800px){.chog-result-reward{left:20px;bottom:125px}.chog-result-reward small{font-size:12px}}
+
+/* Balance and trait frames share the HUD's monochrome, bevelled silhouettes.
+   Keep clipping on decorative layers so gain animations and name tags can overflow. */
+.chog-hunt-live .iw-turf{
+ --balance-shape:polygon(8% 0,92% 0,100% 22%,97% 80%,90% 100%,6% 100%,0 78%,0 22%);
+ border:0;border-radius:0;background:none;box-shadow:none;isolation:isolate;
+ padding:.65em 1em;filter:drop-shadow(0 3px 0 #100c1b);
+}
+.chog-hunt-live .iw-turf::before,.chog-hunt-live .iw-turf::after{content:'';position:absolute;inset:0;z-index:-2;clip-path:var(--balance-shape);background:#fff}
+.chog-hunt-live .iw-turf::after{inset:3px;z-index:-1;background:#171322}
+.chog-hunt-live .is-trait-column .chog-hunt-trait-slot{
+ --trait-shape:polygon(20% 0,78% 0,100% 22%,100% 78%,82% 100%,0 100%,0 22%);
+ --trait-fill:#211a30;--trait-line:#fff;
+ border:0;border-radius:0;background:none;box-shadow:none;isolation:isolate;padding:8px 9px 13px;
+ filter:drop-shadow(0 2px 0 #100c1b);
+}
+.chog-hunt-live .is-trait-column .chog-hunt-trait-slot::before,.chog-hunt-live .is-trait-column .chog-hunt-trait-slot::after{content:'';position:absolute;inset:0;z-index:-2;clip-path:var(--trait-shape);background:var(--trait-line)}
+.chog-hunt-live .is-trait-column .chog-hunt-trait-slot::after{inset:3px;z-index:-1;background:var(--trait-fill)}
+.chog-hunt-live .is-trait-column .chog-hunt-trait-slot img{opacity:.45}
+.chog-hunt-live .is-trait-column .chog-hunt-trait-slot.is-found{--trait-line:#ffca59;--trait-fill:#382739;filter:drop-shadow(0 0 8px #ffca5966)}
+.chog-hunt-live .is-trait-column .chog-hunt-trait-slot.is-found img{opacity:1}
+.chog-hunt-live .is-trait-column .chog-hunt-trait-slot small:last-of-type{z-index:2}
+.chog-hunt-live .is-trait-column .chog-hunt-trait-tick{z-index:3}
+
+/* Retain the native death/respawn ring and ready/glint animations on reshaped avatars. */
+:is(.chog-hunt-live,.chog-raid-hud) .iw-sq.is-dead.is-recovering .iw-sq__ring{display:block}
+:is(.chog-hunt-live,.chog-raid-hud) .iw-sq.is-eliminated .iw-sq__ring{display:none}
+:is(.chog-hunt-live,.chog-raid-hud) .iw-sq.is-recovering .iw-sq__n{display:block;z-index:6}
+:is(.chog-hunt-live,.chog-raid-hud) .iw-mk__tag{border-radius:0;clip-path:polygon(8% 0,94% 0,100% 25%,96% 100%,5% 100%,0 65%);padding:.4em .8em;box-shadow:inset 0 0 0 2px #fff}
+.chog-jump-avatar{width:100%;height:100%;object-fit:cover;border-radius:20%;display:block}
+
+/* Avatar feedback is driven by actual Hunt actions, never by a legacy special meter. */
+:is(.chog-hunt-live,.chog-raid-hud) .iw-sq[data-action="stunned"] .iw-sq__badge{animation:chog-avatar-stun .18s ease-in-out infinite alternate}
+:is(.chog-hunt-live,.chog-raid-hud) .iw-sq:is([data-action="opening"],[data-action="charging"]) .iw-sq__badge{animation:chog-avatar-focus .65s ease-in-out infinite alternate}
+:is(.chog-hunt-live,.chog-raid-hud) .iw-sq[data-action="out"] .iw-sq__spark{display:none}
+@keyframes chog-avatar-stun{from{rotate:-4deg;filter:brightness(1)}to{rotate:4deg;filter:brightness(1.6)}}
+@keyframes chog-avatar-focus{from{filter:brightness(1)}to{filter:brightness(1.5);scale:1.04}}
+@media(prefers-reduced-motion:reduce){:is(.chog-hunt-live,.chog-raid-hud) .iw-sq[data-action] .iw-sq__badge{animation:none}}
+
+/* The pause screen itself is the visibility authority, including direct/online menu entry. */
+body:has(.chog-hunt-pause) :is(.iw-hud,.iw-hud-over,.hunt-ui,.hunt-flying-trait,.hunt-coin-gain,.iw-toasts,.iw-touch){display:none!important;visibility:hidden!important;pointer-events:none!important;transition:none!important}
+
+/* Intro and board traits use the same bevel and white rim as avatar badges.
+   Clip only the frame layers so the torn name tags remain unobstructed. */
+.hunt-intro-card,.hunt-board-trait{--trait-card-shape:polygon(20% 0,78% 0,100% 22%,100% 78%,82% 100%,0 100%,0 22%);position:relative;isolation:isolate;background:none;border:0;border-radius:0;box-shadow:none;filter:drop-shadow(0 4px 0 #15121c66)}
+.hunt-intro-card::before,.hunt-intro-card::after,.hunt-board-trait::before,.hunt-board-trait::after{content:'';position:absolute;z-index:-2;inset:-4px;background:#15121c;clip-path:var(--trait-card-shape);pointer-events:none}
+.hunt-intro-card::after,.hunt-board-trait::after{inset:0;z-index:-1;background:#fff;border:0}
+.hunt-intro-card img,.hunt-board-trait img{max-width:72%}
+
+.hunt-intro-card::after,.hunt-board-trait::after{background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M22 4H76L96 24V76L80 96H4V24Z' fill='white' stroke='%2315121c' stroke-width='1.3'/%3E%3C/svg%3E") center/100% 100% no-repeat}
+
+.chog-hunt-results [data-id=rematch][hidden]{display:none!important}
+
+.chog-hunt-results .iw-res__head{display:none}
+.chog-hunt-results .iw-res__btns{position:absolute;bottom:clamp(22px,5vh,48px);right:4%;left:4%;display:flex;justify-content:flex-end;align-items:center;gap:48px;flex-wrap:wrap;pointer-events:none}
+.chog-hunt-results .iw-res__btns>.iw-btn{position:relative;flex:0 0 auto;width:auto;min-width:160px;height:52px;padding:0 24px;font-size:20px;margin:0;pointer-events:auto}
+@media(max-width:600px){.chog-hunt-results .iw-res__btns{gap:18px;justify-content:center}.chog-hunt-results .iw-res__btns>.iw-btn{min-width:130px}}
+
+.chog-room-wait{position:absolute;z-index:12;left:50%;bottom:calc(var(--u)*12);translate:-50% 0;display:flex;flex-direction:column;align-items:center;gap:8px;max-width:80%;padding:18px 28px;border:2px solid #ffc148;border-radius:16px;background:#21152fee;color:#fff;box-shadow:0 5px 0 #100a20;text-align:center;font:800 17px ChogText,sans-serif;pointer-events:none;animation:chog-wait-in .3s ease-out}
+.chog-room-wait[hidden]{display:none}.chog-room-wait small{color:#d4c6e6;font-size:12px}@keyframes chog-wait-in{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+
+/* Round identity remains fixed when the Carrier changes. */
+.chog-hunt-trait-inventory .chog-hunt-objective-label{color:#ffd17e;font:calc(var(--u)*.8) ChogDisplay,sans-serif;align-self:center;white-space:nowrap}
+.chog-hunt-trait-slot small{max-width:calc(var(--u)*9);overflow:hidden;text-overflow:ellipsis}
+.hunt-intro-card span,.hunt-board-trait span{max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+/* Fewer real traits keep the same card size as a four-trait NFT. */
+.hunt-trait-intro{justify-content:center}
+.hunt-intro-card{flex:0 1 calc((100% - 54px)/4)}
+
+.chog-original .chog-boss-link{position:absolute;right:calc(var(--u)*3.8);bottom:calc(var(--u)*15.2);width:calc(var(--u)*30);height:calc(var(--u)*7);margin:0;font-size:calc(var(--u)*1.7)}
+.chog-boss-link .iw-btn__sub{font-size:calc(var(--u)*.8)}
+.chog-raid-prep{position:absolute;right:3%;top:28%;width:min(34vw,490px);padding:20px;border:2px solid #cbb8e0;border-radius:22px;background:linear-gradient(135deg,#352345ef,#171020ef);box-sizing:border-box}
+.chog-raid-prep__head{display:flex;gap:14px;align-items:center}.chog-raid-prep__head img{width:70px;height:70px;border:3px solid #ffbf50;border-radius:17px;object-fit:cover}.chog-raid-prep h2{margin:3px 0;font-size:28px}.chog-raid-prep small{font-size:12px;color:#d7c7e7}.chog-raid-prep p{font-size:14px}.chog-raid-skills{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0}.chog-raid-skills .iw-btn{font-size:12px;min-height:38px}.chog-raid-skills .is-selected{outline:2px solid #ffbf50}.chog-raid-prep>[data-id=raid-pool]{display:block;width:100%;margin-top:14px}
+.chog-raid-live{position:fixed;inset:0;pointer-events:none;z-index:25}.chog-raid-skill{position:absolute;right:22px;bottom:90px;display:grid;gap:10px;padding:15px;max-width:310px;background:#21172eee;border:2px solid #ae90c3;border-radius:18px}.chog-raid-skill b{color:#ffd27b;font-size:14px}.chog-raid-skill span{font-size:13px}.chog-raid-skill small{font-size:12px}.chog-raid-skill button{pointer-events:auto;font-size:15px}.chog-raid-skill .is-open{color:#93fda5}.chog-raid-result-summary{position:absolute;right:3%;top:24%;width:min(330px,30vw);padding:20px;background:#21172eee;border:2px solid #cbb8e0;border-radius:18px}.chog-raid-result-summary>b{color:#aaff9c;font-size:25px}.chog-raid-result-summary p{font-size:14px}.chog-raid-result-summary button{margin-top:14px;font-size:14px}
+@media(max-height:700px){.chog-raid-prep{top:25%;padding:12px}.chog-raid-prep p{margin:7px 0}.chog-raid-prep__head img{width:50px;height:50px}.chog-raid-prep h2{font-size:22px}.chog-raid-skills{margin:8px 0}}
+
+.chog-raid-pool-modal .iw-modal__card{max-height:90vh;overflow:auto;padding:30px}.chog-raid-pool-modal .iw-modal__title{font-size:32px}.chog-raid-pool-modal .iw-modal__text{font-size:14px}.chog-raid-pool-body{margin:20px 0}.chog-raid-pool-row{display:flex;justify-content:space-between;gap:15px;padding:9px 0;border-bottom:1px solid #ffffff22;font-size:13px}.chog-raid-pool-row b{color:#ffd27b}.chog-raid-pool-actions{display:flex;gap:18px;margin:16px 0}.chog-raid-pool-actions .iw-btn{flex:1;font-size:14px}.chog-raid-pool-modal .chog-wallet-status{font-size:12px;line-height:1.5}
+
+.chog-raid-skill{font-family:ChogText,sans-serif;color:#fff}.chog-raid-skill .iw-btn{color:#21172e}.chog-raid-skill small{color:#d7c7e7}.chog-raid-skill span{color:#fff}.chog-raid-result-summary{font-family:ChogText,sans-serif}
+.chog-raid-choice-summary{display:block;margin:0 0 8px}
+.chog-raid-skills-modal .iw-modal__card{width:min(880px,94vw);max-width:880px;max-height:90vh;overflow:auto;padding:30px 26px 22px}
+.chog-raid-skills-modal .iw-modal__title{font-size:clamp(25px,3.2vw,44px);margin:0 36px 24px}
+.chog-raid-skill-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.chog-raid-skill-card.iw-btn{display:flex;flex-direction:column;gap:10px;align-items:center;text-align:center;padding:18px 12px;min-height:260px;border:2px solid #9275b0;border-radius:19px;background:linear-gradient(145deg,#3c2951,#1b1328);white-space:normal;color:#fff;box-shadow:0 6px 0 #100b1b;transform:none}
+.chog-raid-skill-card .iw-btn__label{font-size:18px;line-height:1.15}
+.chog-raid-skill-card__icon{display:grid;place-items:center;width:58px;height:58px;border-radius:16px;background:#8d54d3;color:#ffe299;font-size:35px}
+.chog-raid-skill-card__effect{font-size:17px;color:#ffd17a}
+.chog-raid-skill-card__scope,.chog-raid-skill-card__cooldown{font-family:ChogText,sans-serif;font-size:12px;line-height:1.3;color:#e2d7ee}
+.chog-raid-skill-card__state{margin-top:auto;padding:7px 9px;background:#160e22;border-radius:9px;font-size:11px;letter-spacing:.04em}
+.chog-raid-skill-card.is-selected{border-color:#ffd17a;box-shadow:0 0 0 2px #ffb72d88,0 6px 0 #100b1b}
+.chog-raid-skill-card.is-selected .chog-raid-skill-card__state{background:#ffc04a;color:#21152e}
+.chog-raid-skill-card.is-locked{opacity:.65;filter:grayscale(.75)}
+.chog-raid-skill-card:focus-visible{outline:3px solid #fff;outline-offset:4px}
+.chog-raid-skill-note{display:block;margin:18px 0 12px;color:#d7c7e7;font-size:12px;text-align:center}
+.chog-raid-skills-close.iw-btn{position:absolute;right:14px;top:14px;min-width:36px;min-height:36px;padding:6px 10px;font-size:22px;border-radius:12px}
+.chog-raid-skills-modal .iw-modal__btns{margin-top:16px}
+.chog-raid-skills [data-id=raid-skill-picker]{min-width:170px}
+.chog-raid-skills [data-id=raid-skill-picker] .iw-btn__sub{font-size:10px}
+@media(max-width:600px){.chog-raid-skill-grid{grid-template-columns:1fr}.chog-raid-skill-card.iw-btn{min-height:0;gap:7px;padding:12px}.chog-raid-skill-card__icon{width:38px;height:38px;font-size:25px}.chog-raid-skills-modal .iw-modal__card{padding:22px 18px}.chog-raid-skills-modal .iw-modal__title{margin-bottom:16px}}
+
+/* Boss results retain the original single XP panel and its count-up/level motion. */
+.chog-raid-results .iw-res__splat{height:calc(var(--u)*23);filter:none!important}
+.chog-raid-result-sign{width:100%;height:100%;object-fit:contain;animation:chog-nft-sign-idle 3.4s ease-in-out infinite}
+.chog-raid-results .iw-res__foot{flex-wrap:wrap;align-items:center}
+.chog-raid-results .iw-xp{flex:1 1 340px;min-width:280px;width:auto}
+.chog-raid-results .iw-res__btns{flex-wrap:wrap;justify-content:flex-end;gap:16px}
+.chog-raid-results .iw-res__btns .iw-btn{height:46px;font-size:clamp(12px,1.2vw,17px);padding:10px 14px}
+.chog-raid-results .iw-btn__blob{border-radius:0;background:url('../assets/chog-hunt-ui/chog-sign-v1.png') center/100% 100% no-repeat}
+.chog-raid-results .iw-btn.is-focus{color:#fff}
+@media(prefers-reduced-motion:reduce){.chog-raid-result-sign{animation:none}}
+
+.chog-raid-hud .iw-timer:after{content:'BOSS BATTLE'}
+.chog-raid-live[hidden],.chog-raid-live [hidden]{display:none!important}
+body.chog-pause-cover .chog-raid-live{display:none!important}
+.chog-raid-live .chog-raid-skill{bottom:calc(var(--u)*7.5);right:calc(var(--u)*2.2);width:260px;max-width:28vw;gap:8px;padding:13px;border:2px solid #fff;border-bottom:4px solid #ffb52e;border-radius:16px;background:linear-gradient(135deg,#352345f2,#171020f2)}
+.chog-raid-skill__effect{font-size:12px;color:#ffd27b;line-height:1.3}.chog-raid-skill__feedback{font-size:12px;color:#aaff9c;min-height:16px;line-height:1.3}.chog-raid-skill__track{height:7px;overflow:hidden;background:#100a1c;border-radius:5px}.chog-raid-skill__track i{display:block;width:100%;height:100%;background:linear-gradient(90deg,#783ee8,#ffb52e);transform-origin:left;will-change:transform}
+.chog-raid-skill.is-activated{animation:chog-raid-activate .5s ease-out}.chog-raid-skill.is-active{border-color:#b8ff9b;box-shadow:0 0 14px #89ee5d55}
+@keyframes chog-raid-activate{0%{scale:.94;filter:brightness(1.8)}60%{scale:1.04}100%{scale:1;filter:brightness(1)}}
+.chog-raid-hud .iw-bb__embsplat,.chog-raid-hud .iw-spl__splat,.chog-original-hud .iw-bover :is(.iw-btc__splat,.iw-bph__splat,.iw-bend__splat){background:url('../assets/chog-hunt-ui/chog-sign-v1.png') center/contain no-repeat}
+.chog-raid-hud .iw-bb__embsplat svg,.chog-raid-hud .iw-spl__splat svg,.chog-original-hud .iw-bover :is(.iw-btc__splat,.iw-bph__splat,.iw-bend__splat) svg{display:none}
+@media(max-height:700px){.chog-raid-live .chog-raid-skill{bottom:65px;padding:9px;gap:6px;width:230px}.chog-raid-skill .iw-btn{font-size:12px;min-height:32px}}
+@media(prefers-reduced-motion:reduce){.chog-raid-skill.is-activated{animation:none}}
+
+.chog-raid-live .iw-btn--primary{--bg:#ffb52e;--a:#ffb52e;background:#ffb52e;color:#21172e}.chog-raid-live .iw-btn__label{color:#21172e;text-shadow:none}
+
+body.iw-dio-on .chog-raid-hud .iw-bhud{visibility:hidden}
+
+.chog-original-hud .iw-lg__w:has(img),.chog-original-hud .iw-bcn__icon:has(img){display:block!important}
+
+.chog-raid-hud .iw-sp__icon img{width:100%;height:100%;object-fit:contain}.chog-boss-stat>i svg{width:100%;height:100%}
+
+/* Keep skill details in normal flow, below the full button and its focus motion. */
+.chog-raid-prep .chog-raid-skills{margin:16px 0 20px;min-height:56px}
+.chog-raid-prep [data-id=raid-skill-picker]{position:relative;inset:auto;min-height:52px;height:auto;padding:12px 16px;flex:none;max-width:100%}
+.chog-raid-prep [data-id=raid-skill-picker] .iw-btn__text{position:static;display:flex;gap:5px}
+.chog-raid-prep [data-id=raid-skill-picker] .iw-btn__sub{margin:0}
+.chog-raid-choice-summary,.chog-raid-card-facts{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 10px;align-items:center}
+.chog-raid-fact{display:inline-flex;gap:6px;align-items:center;padding:6px 8px;border:1px solid #a98ac244;border-radius:8px;background:#130d2099;color:#eee7f7;font:700 12px/1.35 ChogText,sans-serif;max-width:100%;box-sizing:border-box}
+.chog-raid-fact i{flex:0 0 16px;width:16px;height:16px;color:#ffd17a;display:block}.chog-raid-fact i svg{width:100%;height:100%}.chog-raid-fact>span{white-space:normal;overflow-wrap:anywhere}
+.chog-raid-history{display:block;margin:0 0 12px}.chog-raid-history .chog-raid-fact{background:none;border:0;padding:2px 0;color:#cfc1df}
+.chog-raid-skill-card.iw-btn{gap:12px;min-height:300px;padding:18px 12px}
+.chog-raid-skill-card .iw-btn__text{position:static;min-height:40px;display:grid;place-items:center;flex:none}
+.chog-raid-skill-card .iw-btn__label{white-space:normal;line-height:1.25}
+.chog-raid-skill-card__icon svg{width:34px;height:34px}.chog-raid-card-facts{justify-content:center;flex:1;margin:0;align-content:center}.chog-raid-card-facts .chog-raid-fact:first-child{color:#ffd17a}
+.chog-raid-skill-card__cooldown{display:flex;gap:8px;align-items:center;justify-content:center;flex-wrap:wrap}.chog-raid-skill-card__cooldown kbd{font:800 12px ChogText,sans-serif;background:#f7f3ff;color:#21172e;border-radius:5px;padding:4px 7px}
+.chog-raid-skill-card__state{line-height:1.35;white-space:normal}.chog-raid-skills-modal .iw-btn__blob{display:none}
+@media(max-height:700px){.chog-raid-prep .chog-raid-skills{margin:10px 0 14px}.chog-raid-fact{font-size:11px;padding:4px 6px}.chog-raid-skill-card.iw-btn{min-height:265px}}
+@media(max-width:600px){.chog-raid-skill-card.iw-btn{min-height:0}.chog-raid-skill-card .iw-btn__text{min-height:0}}
+
+/* Idle is one button; active/recharge details have their own layout and track. */
+.chog-raid-live .chog-raid-skill.is-compact{padding:0;background:none;border:0;box-shadow:none;width:auto;max-width:32vw;display:block}
+.chog-raid-skill__details{display:grid;gap:10px;min-width:0}
+.chog-raid-skill__details>.chog-raid-skill__effect,.chog-raid-skill__details>span{display:flex;flex-wrap:wrap;gap:6px;min-width:0}
+.chog-raid-live .chog-raid-skill .iw-btn{position:relative;inset:auto;margin:0;min-height:44px;height:auto;padding:12px 16px;font-size:13px;max-width:100%}
+.chog-raid-live .chog-raid-skill .iw-btn__label{white-space:normal;line-height:1.3}
+.chog-raid-skill__details .chog-raid-fact{font-size:11px;padding:5px 6px}
+.chog-raid-skill__details .chog-raid-fact>span{font-size:11px}
+.chog-raid-skill__details .chog-raid-skill__track{position:relative;inset:auto;height:10px;min-height:10px;width:100%;margin:2px 0 0;z-index:0;border:1px solid #a58abf;box-sizing:border-box}
+.chog-raid-skill__details .chog-raid-skill__feedback:empty{display:none}
+.chog-raid-skill__details>small{display:block;margin:0}
+/* Native menu components; only placement and compact option layout differ. */
+.chog-original .chog-boss-link{bottom:calc(var(--u)*23.1)}
+.chog-original .chog-mode-link{position:absolute;right:calc(var(--u)*3.8);bottom:calc(var(--u)*15.2);width:calc(var(--u)*30);height:calc(var(--u)*7);margin:0;font-size:calc(var(--u)*1.7)}
+.chog-mode-link .iw-btn__sub{font-size:calc(var(--u)*.72)}
+.chog-mode-modal .iw-modal__btns{flex-direction:column;gap:12px}
+.chog-mode-modal .iw-modal__btns .iw-btn{width:100%}
+.chog-workshop-modal .iw-modal__card{width:min(800px,92vw);max-height:90vh;overflow:auto}
+.chog-workshop-body{display:grid;gap:14px;margin:18px 0}
+.chog-workshop-options{display:flex;flex-wrap:wrap;gap:10px}
+.chog-workshop-options>.iw-seclabel{flex-basis:100%}
+.chog-workshop-options .iw-btn{flex:1;min-width:130px;font-size:14px}
+.chog-workshop-options .iw-btn__sub{white-space:normal;font-size:12px;line-height:1.35}
+.chog-workshop-options .iw-btn:disabled{opacity:.42}
+.chog-workshop-options .iw-btn__blob{display:none}
+.chog-workshop-options .iw-btn.is-focus{color:#fff}
+.chog-workshop-options .is-selected{outline:3px solid var(--a,#ffac28);outline-offset:3px}
+.chog-objective-summary{position:relative;margin:16px auto;padding:12px 24px;max-width:440px;text-align:center}
+.chog-objective-summary>b{font-size:34px}.chog-objective-summary>p{font-size:14px}
+.chog-objective-skill{position:absolute;right:24px;bottom:100px;pointer-events:auto;max-width:220px;font-size:16px}
+.chog-objective-skill[hidden]{display:none}
+.chog-objective-skill.is-compact{padding:0;background:none;border:0;box-shadow:none;width:auto;max-width:32vw;display:block}
+.chog-objective-skill .iw-btn{position:relative;inset:auto;margin:0;min-height:44px;height:auto;padding:12px 16px;font-size:13px;max-width:100%}
+.chog-objective-skill .iw-btn__label{white-space:normal;line-height:1.3}

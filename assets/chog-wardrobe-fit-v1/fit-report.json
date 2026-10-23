@@ -1,0 +1,71 @@
+{
+  "parts": {
+    "ChogJacket": {
+      "vertices": 24238,
+      "faces": 32994,
+      "min": [
+        -0.07500000298023224,
+        -0.4020000100135803,
+        0.5850134491920471
+      ],
+      "max": [
+        0.20499999821186066,
+        0.4020000100135803,
+        1.0219975709915161
+      ],
+      "unweightedFallbacks": 0,
+      "projectionCorrections": 0
+    },
+    "ChogShorts": {
+      "vertices": 21556,
+      "faces": 32103,
+      "min": [
+        -0.0749933123588562,
+        -0.204354390501976,
+        0.40500807762145996
+      ],
+      "max": [
+        0.17499999701976776,
+        0.2042004019021988,
+        0.7049992680549622
+      ],
+      "unweightedFallbacks": 0,
+      "projectionCorrections": 0
+    },
+    "ChogShoeL": {
+      "vertices": 17467,
+      "faces": 26356,
+      "min": [
+        -0.0900275856256485,
+        0.03500145301222801,
+        -1.5492506690861774e-06
+      ],
+      "max": [
+        0.20501653850078583,
+        0.23501312732696533,
+        0.24001845717430115
+      ],
+      "unweightedFallbacks": 0,
+      "projectionCorrections": 0
+    },
+    "ChogShoeR": {
+      "vertices": 17467,
+      "faces": 26356,
+      "min": [
+        -0.0900275856256485,
+        -0.23501312732696533,
+        -1.5492506690861774e-06
+      ],
+      "max": [
+        0.20501653850078583,
+        -0.03500145301222801,
+        0.24001845717430115
+      ],
+      "unweightedFallbacks": 0,
+      "projectionCorrections": 0
+    }
+  },
+  "sourcesFormat": "FBX binary despite .glb filenames",
+  "bodyVertices": 46495,
+  "boneCount": 22
+}

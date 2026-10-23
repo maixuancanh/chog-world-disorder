@@ -1,0 +1,12 @@
+import {test} from 'node:test';import assert from 'node:assert/strict';
+import {DROP_TIMES,dropRoll,dropPose,botSkill} from '../../src/game/hunt-airdrop-rules.js';
+import {HuntCore} from '../../src/game/hunt-core.js';
+const players=Array.from({length:6},(_,i)=>({id:'p'+i})),traits=Array.from({length:4},(_,i)=>({id:'t'+i}));
+const start=()=>{const c=new HuntCore({players,traits,holderId:'p0'});for(let i=0;i<7;i++)c.step(1);return c;};
+test('only 30/90/180/250 seconds trigger, no repeat; new match resets wave cursor',()=>{assert.deepEqual(DROP_TIMES,[30,90,180,250]);const c=start();for(let i=0;i<300;i++)c.step(1);assert.deepEqual(c.drain().filter(e=>e.type==='drop-wave').map(e=>e.at),DROP_TIMES);const d=start();for(let i=0;i<29;i++)d.step(1);assert.equal(d.drain().filter(e=>e.type==='drop-wave').length,0);d.step(1);assert.equal(d.drain().filter(e=>e.type==='drop-wave').length,1);});
+test('each roll is 5..10 chests and .001.. .1 CHOG without jackpot',()=>{for(const [random,count,amount]of [[()=>0,5,1],[()=>.999999,10,100]]){const r=dropRoll(random);assert.equal(r.length,count);assert.ok(r.every(n=>n===amount));}});
+test('gentle falling sway ends at ground; no remaining parachute on ground',()=>{const a=dropPose(0,0),b=dropPose(4,.3),c=dropPose(8,2),d=dropPose(12,2);assert.ok(a.y>15&&a.parachute);assert.ok(b.y<a.y&&b.y>0);assert.ok(b.x!==0||b.z!==0);assert.deepEqual(c,{x:0,y:0,z:0,roll:0,pitch:0,parachute:false,landed:true});assert.deepEqual(d,c);});
+test('skill follows earned level monotonically and is bounded without manual difficulty',()=>{const a=botSkill(1),b=botSkill(20),c=botSkill(10000);assert.ok(a.reaction>b.reaction&&b.reaction>=c.reaction);assert.ok(a.aimError>b.aimError&&b.awareness>a.awareness);assert.ok(c.reaction>=.12&&c.aimError>=.02);assert.deepEqual(botSkill(NaN),a);assert.deepEqual(botSkill(-5),a);});
+
+test('opening reserves a drop for one player; stun or role transfer cannot duplicate or lose reward',()=>{const c=start();c.addDrop('d',78);assert.ok(c.beginDrop('p1','d'));assert.equal(c.beginDrop('p2','d'),false);c.players.get('p1').stun=3;assert.ok(c.finishDrop('p1','d'));assert.equal(c.finishDrop('p1','d'),false);assert.equal(c.players.get('p1').earned,78);});
+test('unopened drops pay nothing at timeout; completed hold reserves reward before results',()=>{const c=start();c.addDrop('a',100);c.addDrop('b',1);c.beginDrop('p0','a');c.end(null,'timeout');c.step(1);assert.equal(c.result.players[0].earned,100);assert.equal(c.drops.get('b').collected,null);assert.equal(c.finishDrop('p0','a'),false);});

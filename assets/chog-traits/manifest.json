@@ -1,0 +1,38 @@
+{
+  "mcga-cap": {
+    "source": "purple_baseball_cap_3d_model.glb",
+    "sha256": "043ad0e4da9df8ea01ccf6f8c3d47c549a2d35d9f9db57ddd168e2be5c2e599d",
+    "originalVertices": 26728,
+    "vertices": 10948,
+    "triangles": 15999,
+    "maxSize": 0.88,
+    "file": "mcga-cap.glb"
+  },
+  "btc-glasses": {
+    "source": "bitcoin_sunglasses_3d_model.glb",
+    "sha256": "96b2b667572f812e168b3707df48a4bc7da9d0e4573d9f5755d3f72c5752e3dc",
+    "originalVertices": 27328,
+    "vertices": 11302,
+    "triangles": 15998,
+    "maxSize": 0.86,
+    "file": "btc-glasses.glb"
+  },
+  "yellow-143-jersey": {
+    "source": "basketball_jersey_3d_model.glb",
+    "sha256": "1b8f3e45f805975ae10aac5ca413c8f1ae7f2dd9d86203d90b2c5d93e5d3e621",
+    "originalVertices": 27119,
+    "vertices": 11646,
+    "triangles": 16000,
+    "maxSize": 0.98,
+    "file": "yellow-143-jersey.glb"
+  },
+  "fwog": {
+    "source": "green_frog_3d_model.glb",
+    "sha256": "65cfc1e88c5422c8f216231bb4be1eac0113d17d9a79ce1cb19a7475807e20c6",
+    "originalVertices": 26204,
+    "vertices": 10465,
+    "triangles": 15999,
+    "maxSize": 0.72,
+    "file": "fwog.glb"
+  }
+}

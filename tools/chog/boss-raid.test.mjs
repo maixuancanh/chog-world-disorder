@@ -1,0 +1,7 @@
+import test from 'node:test';import assert from 'node:assert/strict';
+import {raidRole,raidRequirements,raidSkills,raidActivity,raidRewardBps} from '../../src/game/boss-raid-rules.js';
+import {objectiveForModel} from '../../src/game/chog-objectives.js';
+test('trait roles are deterministic and unaffected by rarity or level',()=>{const n=objectiveForModel('1462');assert.deepEqual(raidRole(n),raidRole({...n,level:999,tier:'Legendary'}));assert.equal(raidRole(null).id,'recruit');});
+test('all three boss phases have an achievable real trait requirement',()=>{const team=['1462','0697','1055'].map(objectiveForModel),r=raidRequirements(team);assert.equal(r.length,3);for(const t of r)assert.ok(team.some(n=>n.traits.some(x=>x.id===t.id)));assert.deepEqual(raidRequirements([null]),[]);});
+test('NFT raid wins unlock skills; unearned skills stay unavailable',()=>{assert.deepEqual(raidSkills(0).map(s=>s.id),['trait']);assert.deepEqual(raidSkills(1).map(s=>s.id),['trait','rally']);assert.ok(raidSkills(3).some(s=>s.id==='second-wind'));});
+test('activity EXP and pool performance are capped and idle players cannot earn',()=>{const idle={damage:0,healing:0,blocked:0,breaks:0};assert.equal(raidRewardBps(idle,10000),0);assert.deepEqual(raidActivity(idle),{bossDamage:0,bossSupport:0,bossShields:0});const active={damage:10000,healing:1000,blocked:1000,breaks:20};assert.equal(raidRewardBps(active,10000),10000);assert.deepEqual(raidActivity(active),{bossDamage:12,bossSupport:10,bossShields:3});});

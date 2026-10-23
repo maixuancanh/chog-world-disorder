@@ -1,0 +1,9 @@
+{
+  "version": 2,
+  "chainId": 10143,
+  "factory": "0xDF71054970d9936EcA0ed945A0F11A875700b756",
+  "nft": "0xd6F8a7262Ff96A87cc6A96CeC82c616Ceb8ec678",
+  "token": "0x5264B3A7fb6C8141845138Be8de57dED04f8dA4F",
+  "transactionHash": "0x8902ce4845e179958ad056b661d7d3a4954280458adc1b6856f7123f6493e618",
+  "replicaTransactionHash": "0xb293b8a0f8af1881c13c953a6dc12e3efc414de10e766f1bc1dc6c1114ccb133"
+}

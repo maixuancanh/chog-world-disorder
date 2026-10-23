@@ -1,0 +1,65 @@
+[
+  {
+    "id": "01-tshirt",
+    "name": "Áo thun cổ tròn",
+    "image": "01-tshirt.png",
+    "source": "clothes-1.webp",
+    "bodyReference": "../chog-base-reference/chog-base-front-v1.png"
+  },
+  {
+    "id": "02-varsity",
+    "name": "Áo khoác varsity",
+    "image": "02-varsity.png",
+    "source": "clothes-14.webp",
+    "bodyReference": "../chog-base-reference/chog-base-front-v1.png"
+  },
+  {
+    "id": "03-puffer",
+    "name": "Áo phao",
+    "image": "03-puffer.png",
+    "source": "clothes-4.webp",
+    "bodyReference": "../chog-base-reference/chog-base-front-v1.png"
+  },
+  {
+    "id": "04-biker",
+    "name": "Áo khoác biker",
+    "image": "04-biker.png",
+    "source": "clothes-17.webp",
+    "bodyReference": "../chog-base-reference/chog-base-front-v1.png"
+  },
+  {
+    "id": "05-shorts",
+    "name": "Quần ngắn",
+    "image": "05-shorts.png",
+    "source": "Mẫu bổ sung theo tỷ lệ cơ thể Chog",
+    "bodyReference": "../chog-base-reference/chog-base-front-v1.png"
+  },
+  {
+    "id": "06-trousers",
+    "name": "Quần dài",
+    "image": "06-trousers.png",
+    "source": "Mẫu bổ sung theo tỷ lệ cơ thể Chog",
+    "bodyReference": "../chog-base-reference/chog-base-front-v1.png"
+  },
+  {
+    "id": "07-low-sneaker",
+    "name": "Sneaker cổ thấp",
+    "image": "07-low-sneaker.png",
+    "source": "Mẫu bổ sung theo tỷ lệ cơ thể Chog",
+    "bodyReference": "../chog-base-reference/chog-base-front-v1.png"
+  },
+  {
+    "id": "08-high-sneaker",
+    "name": "Sneaker cổ cao",
+    "image": "08-high-sneaker.png",
+    "source": "Mẫu bổ sung theo tỷ lệ cơ thể Chog",
+    "bodyReference": "../chog-base-reference/chog-base-front-v1.png"
+  },
+  {
+    "id": "09-ankle-boot",
+    "name": "Boot cổ ngắn",
+    "image": "09-ankle-boot.png",
+    "source": "Mẫu bổ sung theo tỷ lệ cơ thể Chog",
+    "bodyReference": "../chog-base-reference/chog-base-front-v1.png"
+  }
+]

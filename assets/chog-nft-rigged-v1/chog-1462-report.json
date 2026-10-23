@@ -1,0 +1,29 @@
+{
+  "nft": "1462",
+  "source": "stylized_cartoon_character_3d_model.glb",
+  "sha256": "b007292f7b2ec9c4e1902328a57757ee94586449f114d8c060baa083384cadf2",
+  "vertices": 28361,
+  "bones": 22,
+  "rigSource": "chog-base-rig.blend",
+  "exactRestRigPreserved": false,
+  "normalizedHeight": 1.48,
+  "sourceBounds": [
+    [
+      -0.2093353271484375,
+      -0.224395751953125,
+      -0.4896240234375
+    ],
+    [
+      0.2090911865234375,
+      0.224151611328125,
+      0.49200439453125
+    ]
+  ],
+  "scale": 1.5076988124106199,
+  "unweightedVertices": 0,
+  "maxWeightSumError": 2.220446049250313e-16,
+  "rigidHead": true,
+  "maxInfluences": 4,
+  "solver": "Existing armature; bone heat on voxel proxy, nearest weight transfer; rigid head transition; isolated arm/leg weights with smooth elbow, wrist, knee and ankle blends; rigid shoes; render topology unchanged; arm pivots fitted to mesh cross sections, wrist at 0.65",
+  "armPivotsFitted": true
+}

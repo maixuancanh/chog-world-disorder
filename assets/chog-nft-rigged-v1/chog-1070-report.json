@@ -1,0 +1,29 @@
+{
+  "nft": "1070",
+  "source": "sonic-like_astronaut_3d_model.glb",
+  "sha256": "dcc8717fe37f2df7cdfc3adf733c877e23fed25e56b6f5ed91eb16d8d72fa6d9",
+  "vertices": 27420,
+  "bones": 22,
+  "rigSource": "chog-base-rig.blend",
+  "exactRestRigPreserved": false,
+  "normalizedHeight": 1.48,
+  "sourceBounds": [
+    [
+      -0.1648101806640625,
+      -0.2297515869140625,
+      -0.48974609375
+    ],
+    [
+      0.163726806640625,
+      0.2297210693359375,
+      0.4898681640625
+    ]
+  ],
+  "scale": 1.510798753894081,
+  "unweightedVertices": 0,
+  "maxWeightSumError": 2.220446049250313e-16,
+  "rigidHead": true,
+  "maxInfluences": 4,
+  "solver": "Existing armature; bone heat on voxel proxy, nearest weight transfer; rigid head transition; isolated arm/leg weights with smooth elbow, wrist, knee and ankle blends; rigid shoes; render topology unchanged; arm pivots fitted to mesh cross sections, wrist at 0.65",
+  "armPivotsFitted": true
+}

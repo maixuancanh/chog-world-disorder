@@ -1,0 +1,65 @@
+{
+  "objects": [
+    {
+      "name": "tripo_node_403371e9",
+      "type": "MESH",
+      "dimensions": [
+        0.32876136898994446,
+        0.5705611705780029,
+        0.9786339998245239
+      ],
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation": [
+        -4.371138828673793e-08,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "vertices": 46495,
+      "polygons": 46359,
+      "groups": [],
+      "materials": [
+        "tripo_mat_403371e9"
+      ],
+      "modifiers": []
+    }
+  ],
+  "actions": [],
+  "images": [
+    {
+      "name": "Render Result",
+      "size": [
+        0,
+        0
+      ],
+      "filepath": "",
+      "packed": false
+    },
+    {
+      "name": "tripo_image_403371e9_0",
+      "size": [
+        4096,
+        4096
+      ],
+      "filepath": "Color.jpg",
+      "packed": true
+    },
+    {
+      "name": "Viewer Node",
+      "size": [
+        256,
+        256
+      ],
+      "filepath": "",
+      "packed": false
+    }
+  ]
+}

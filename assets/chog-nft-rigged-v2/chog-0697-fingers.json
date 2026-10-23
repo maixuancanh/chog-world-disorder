@@ -1,0 +1,110 @@
+{
+  "Left": {
+    "palm": [
+      -0.010931756347417831,
+      0.03441816568374634,
+      -0.03194223716855049
+    ],
+    "palmSource": [
+      0.025622069835662842,
+      0.27196887135505676,
+      0.6047431230545044
+    ],
+    "chains": {
+      "Little": {
+        "names": [
+          "LeftHandLittle1",
+          "LeftHandLittle2",
+          "LeftHandLittle3"
+        ],
+        "tip": "LeftHandLittleTip"
+      },
+      "Ring": {
+        "names": [
+          "LeftHandRing1",
+          "LeftHandRing2",
+          "LeftHandRing3"
+        ],
+        "tip": "LeftHandRingTip"
+      },
+      "Middle": {
+        "names": [
+          "LeftHandMiddle1",
+          "LeftHandMiddle2",
+          "LeftHandMiddle3"
+        ],
+        "tip": "LeftHandMiddleTip"
+      },
+      "Index": {
+        "names": [
+          "LeftHandIndex1",
+          "LeftHandIndex2",
+          "LeftHandIndex3"
+        ],
+        "tip": "LeftHandIndexTip"
+      },
+      "Thumb": {
+        "names": [
+          "LeftHandThumb1",
+          "LeftHandThumb2",
+          "LeftHandThumb3"
+        ],
+        "tip": "LeftHandThumbTip"
+      }
+    }
+  },
+  "Right": {
+    "palm": [
+      -0.018809860572218895,
+      0.034981392323970795,
+      0.02833804301917553
+    ],
+    "palmSource": [
+      0.025411197915673256,
+      -0.2723606526851654,
+      0.6041208505630493
+    ],
+    "chains": {
+      "Little": {
+        "names": [
+          "RightHandLittle1",
+          "RightHandLittle2",
+          "RightHandLittle3"
+        ],
+        "tip": "RightHandLittleTip"
+      },
+      "Ring": {
+        "names": [
+          "RightHandRing1",
+          "RightHandRing2",
+          "RightHandRing3"
+        ],
+        "tip": "RightHandRingTip"
+      },
+      "Middle": {
+        "names": [
+          "RightHandMiddle1",
+          "RightHandMiddle2",
+          "RightHandMiddle3"
+        ],
+        "tip": "RightHandMiddleTip"
+      },
+      "Index": {
+        "names": [
+          "RightHandIndex1",
+          "RightHandIndex2",
+          "RightHandIndex3"
+        ],
+        "tip": "RightHandIndexTip"
+      },
+      "Thumb": {
+        "names": [
+          "RightHandThumb1",
+          "RightHandThumb2",
+          "RightHandThumb3"
+        ],
+        "tip": "RightHandThumbTip"
+      }
+    }
+  }
+}

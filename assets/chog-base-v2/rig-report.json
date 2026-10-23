@@ -1,0 +1,146 @@
+{
+  "sourceFormat": "FBX (mislabeled .glb)",
+  "sourceVertices": 46495,
+  "bones": 22,
+  "unweightedVertices": 0,
+  "normalizedHeight": 1.48,
+  "joints": {
+    "Hips": [
+      0,
+      0.62,
+      0
+    ],
+    "Spine": [
+      0,
+      0.73,
+      0
+    ],
+    "Spine1": [
+      0,
+      0.82,
+      0
+    ],
+    "Spine2": [
+      0,
+      0.91,
+      0
+    ],
+    "Neck": [
+      0,
+      0.995,
+      0
+    ],
+    "Head": [
+      0,
+      1.065,
+      0
+    ],
+    "HeadTop_End": [
+      0,
+      1.25,
+      0
+    ],
+    "LeftShoulder": [
+      0.055,
+      0.925,
+      0
+    ],
+    "LeftArm": [
+      0.132,
+      0.934,
+      0
+    ],
+    "LeftForeArm": [
+      0.213,
+      0.779,
+      0
+    ],
+    "LeftHand": [
+      0.288,
+      0.62,
+      0
+    ],
+    "LeftHand_End": [
+      0.339,
+      0.505,
+      0.015
+    ],
+    "LeftUpLeg": [
+      0.083,
+      0.615,
+      0
+    ],
+    "LeftLeg": [
+      0.118,
+      0.355,
+      0.012
+    ],
+    "LeftFoot": [
+      0.134,
+      0.105,
+      -0.015
+    ],
+    "LeftToeBase": [
+      0.145,
+      0.045,
+      0.075
+    ],
+    "LeftToe_End": [
+      0.145,
+      0.045,
+      0.145
+    ],
+    "RightShoulder": [
+      -0.055,
+      0.925,
+      0
+    ],
+    "RightArm": [
+      -0.132,
+      0.934,
+      0
+    ],
+    "RightForeArm": [
+      -0.213,
+      0.779,
+      0
+    ],
+    "RightHand": [
+      -0.288,
+      0.62,
+      0
+    ],
+    "RightHand_End": [
+      -0.339,
+      0.505,
+      0.015
+    ],
+    "RightUpLeg": [
+      -0.083,
+      0.615,
+      0
+    ],
+    "RightLeg": [
+      -0.118,
+      0.355,
+      0.012
+    ],
+    "RightFoot": [
+      -0.134,
+      0.105,
+      -0.015
+    ],
+    "RightToeBase": [
+      -0.145,
+      0.045,
+      0.075
+    ],
+    "RightToe_End": [
+      -0.145,
+      0.045,
+      0.145
+    ]
+  },
+  "sourceFile": "purple_cartoon_character_3d_model.glb",
+  "solver": "Blender bone heat on voxel proxy (0.01-unit voxel size), transferred to unchanged render mesh; rigid head transition"
+}

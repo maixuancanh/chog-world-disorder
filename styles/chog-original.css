@@ -1,0 +1,651 @@
+/* Original Inkwave UI and animation system. Only theme, typography, modest
+   corner changes and the new hunt information are defined here. */
+@font-face{font-family:ChogDisplay;src:url('../assets/fonts/LilitaOne-Regular.ttf') format('truetype');font-weight:400;font-display:swap}
+.chog-original,.chog-original-hud{--a:#ffac28;--b:#783ee8;--self:#ffac28;--enemy:#783ee8}
+.chog-original .iw-btn,.chog-original .iw-panel,.chog-original .iw-modal__card{border-radius:calc(var(--u)*.7) calc(var(--u)*1.5) calc(var(--u)*.7) calc(var(--u)*1.5)}
+.chog-original .iw-btn--online{--bg:#783ee8;--fill:#ffac28;--fill-ink:#251934}
+.chog-original .iw-display,.chog-original .iw-btn__label,.chog-original .iw-profile__name,.chog-original .iw-kitcard__name,.chog-original .iw-hubcard__title,.chog-original .iw-lob__statustxt,.chog-original-hud .iw-timer__txt,.chog-original-hud .iw-display{font-family:ChogDisplay,ChogText,sans-serif;font-weight:400}
+.chog-original .iw-btn__label{font-size:.90em}.chog-original .iw-btn__sub{font-weight:800}
+.chog-original .iw-profile__rank{color:#ffba54}.chog-original .iw-profile__name{font-size:calc(var(--u)*1.55)}
+.chog-original .iw-logo__sub{background:#783ee8}
+.chog-native-portrait{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top}
+.chog-main-character{position:absolute;left:39%;top:20%;width:29%;height:65%;pointer-events:none}.chog-main-character img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 15px 14px #0004)}
+.chog-info{padding:calc(var(--u)*2);font-size:var(--fs-m);line-height:1.6}.chog-info h2{font-size:calc(var(--u)*1.8)}.chog-info p{margin:1em 0}.chog-nft-art{width:calc(var(--u)*13);height:calc(var(--u)*16);object-fit:contain;float:left;margin-right:20px}
+.chog-traits{display:flex;gap:calc(var(--u)*.5);margin-top:12px}.chog-traits span{display:grid;place-items:center;width:calc(var(--u)*3);height:calc(var(--u)*3);background:#4a425b;color:#ada2bf;border-radius:8px;font-weight:900}.chog-traits .is-found{background:#783ee8;color:white}
+.chog-room-pips{display:flex;gap:calc(var(--u)*.5);width:100%;padding:calc(var(--u)*.5) 0}.chog-room-pips span{flex:1;padding:.8em .1em;text-align:center;background:#443355;border-radius:5px;font-size:var(--fs-xs)}.chog-room-pips .is-you{background:#ffac28;color:#251934;font-weight:900}
+.chog-fixed{font:400 calc(var(--u)*1.4) ChogDisplay;display:block;padding:.8em;text-align:center;background:#352944;border-radius:8px}
+.chog-open-slots{position:absolute;inset:0;pointer-events:none}.chog-open-slots .iw-plate{position:absolute}
+.chog-original .iw-lob__plates{display:none}.chog-original .iw-lob__you{gap:calc(var(--u)*1)}.chog-original .iw-lob__you>.iw-btn{font-size:calc(var(--u)*1.3)}
+.chog-original .iw-rule__title,.chog-original .iw-rule__num{font-family:ChogDisplay,ChogText,sans-serif}.chog-original .iw-rule__title{font-size:calc(var(--u)*1.4)}
+.chog-preview-controls{position:absolute;top:calc(var(--u)*1);left:calc(var(--u)*2);padding:calc(var(--u)*.7);display:flex;align-items:center;gap:calc(var(--u)*.8);z-index:1}.chog-preview-controls>b{font-size:var(--fs-xs)}.chog-preview-controls .iw-btn{font-size:calc(var(--u)*1);padding:.8em}
+.chog-native-traits{position:absolute;bottom:calc(var(--u)*6);left:50%;transform:translateX(-50%);display:flex;gap:calc(var(--u)*.6);padding:calc(var(--u)*.9);align-items:center}.chog-native-traits small{font-size:var(--fs-xs)}.chog-native-traits span{display:grid;place-items:center;background:#50465c;color:#aa9eb9;width:calc(var(--u)*2.7);height:calc(var(--u)*2.7);border-radius:6px}.chog-native-traits span.is-found{background:#783ee8;color:white}.chog-native-traits b{font-size:var(--fs-m)}
+.chog-native-ammo{position:absolute;top:calc(var(--u)*2);right:calc(var(--u)*2);padding:calc(var(--u)*1);text-align:center}.chog-native-ammo small{display:block;font-size:var(--fs-xs);font-weight:900}.chog-native-ammo b{display:block;font-size:calc(var(--u)*2.5);margin:.2em 0}.chog-bullets{display:flex;gap:5px;justify-content:center}.chog-bullets i{width:9px;height:23px;border:1px solid #b9aacd;border-radius:4px 4px 0 0}.chog-bullets .is-loaded{background:#ffac28;border-color:#ffac28}
+.chog-original-hud [hidden]{display:none!important}.chog-original-hud .iw-map{opacity:1;visibility:visible}.chog-native-map{width:100%;height:100%;object-fit:cover;filter:grayscale(.7)}.chog-original-hud .iw-sq__w img{width:100%;height:100%;object-fit:cover;object-position:top}
+.chog-original-hud .iw-sq__x{display:none}.chog-original-hud .iw-sq.is-dead .iw-sq__x{display:block}.chog-original-hud .iw-sq.is-dead .iw-sq__w{opacity:.3}
+@media(max-width:650px){.chog-main-character{left:40%;width:27%}.chog-preview-controls{gap:6px;flex-wrap:wrap;max-width:96vw}.chog-preview-controls>b{font-size:10px}.chog-preview-controls .iw-btn{font-size:10px}.chog-original .iw-profile__name{font-size:calc(var(--u)*1.3)}}
+.chog-original{--hv:#ffac28;--hv-deep:#713810;--hv-dark:#e48220}
+.chog-original .iw-logo__word,.chog-original .iw-logo__sub,.chog-original .iw-progress__pct,.chog-original .iw-lvl,.chog-original .iw-rc__tile,.chog-original .iw-wchip b,.chog-original .iw-lstage__name{font-family:ChogDisplay,ChogText,sans-serif;font-weight:400}
+.chog-original[data-screen="online"] .iw-cursor__ring,.chog-original[data-screen="lobby"] .iw-cursor__ring{border-color:#ffcb6e}
+@keyframes iw-hv-ring{50%{border-color:#ffd99a}}
+.chog-original .iw-backbtn__arrow{background:#ffac28;color:#251934}
+.chog-preview-controls{top:auto;left:auto;right:calc(var(--u)*2);bottom:calc(var(--u)*2);max-width:calc(var(--u)*36);flex-wrap:wrap}
+
+/* Self-hosted SIL Open Font License type; includes Vietnamese body glyphs. */
+@font-face{font-family:ChogText;src:url('../assets/fonts/NunitoSans-Variable.ttf') format('truetype');font-weight:200 900;font-style:normal;font-display:swap}
+#ui-root{--font-display:ChogDisplay;--font-body:ChogText}
+.chog-original,.chog-original-hud{font-family:ChogText,sans-serif}
+.chog-original .iw-rule__text{font-weight:700}
+.chog-brand__image{display:block;width:100%;height:auto;object-fit:contain}
+.iw-main__logo.chog-brand{width:calc(var(--u)*23)}
+.iw-title__logoin.chog-brand{width:min(calc(var(--u)*66),88vw)}
+.iw-loading__center>.chog-brand{width:min(calc(var(--u)*46),80vw)}
+
+/* Loading art replaces the old floating blobs and halftone layer. */
+.chog-original .iw-loading{background:#201131}
+.chog-original .iw-loading::after{display:block}
+.chog-loading-art{width:100%;height:100%;object-fit:cover;object-position:center}
+.chog-original .iw-loading__bg::after{content:'';position:absolute;inset:0;background:rgba(18,9,30,.22);pointer-events:none}
+.chog-original .iw-loading__center{max-width:92vw}
+.chog-original .iw-loading__label{text-align:center;text-shadow:0 2px 4px #160c28}
+
+/* Keep the paint arena and original halftone texture through the start prompt. */
+.chog-original .iw-title{background:#201131 url('../assets/chog-hunt-ui/loading-arena-v1.png') center/cover no-repeat}
+.chog-original .iw-title::after{content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(rgba(255,255,255,.06) 1.2px,transparent 1.6px) 0 0/12px 12px;-webkit-mask-image:radial-gradient(ellipse at center,transparent 30%,#000 90%);mask-image:radial-gradient(ellipse at center,transparent 30%,#000 90%)}
+
+.chog-original .chog-transition-character{display:block;width:100%;height:100%;object-fit:contain}
+
+.chog-character-wipe .iw-wipe__mark{top:0;width:calc(var(--u)*16);height:calc(var(--u)*22);margin:0 0 0 calc(var(--u)*-8);will-change:transform}
+.chog-character-wipe .iw-wipe__mark.is-on{animation:none;scale:1;rotate:0deg;translate:none}
+.chog-character-wipe .iw-wipe__ring{display:none}
+
+.chog-menu-icon{position:relative;display:block;width:100%;height:100%}
+.chog-menu-icon>img{display:block;width:100%;height:100%;object-fit:contain}
+.chog-menu-icon--online{overflow:hidden}
+.chog-menu-icon--online>img{position:absolute;left:0;bottom:0;height:83%}
+.chog-menu-icon>.chog-wifi{position:absolute;top:3%;left:16%;width:68%;height:30%;overflow:visible;filter:none}
+.chog-original .iw-btn--online .iw-btn__icon{width:1.7em;height:1.7em}
+.chog-original .iw-btn--online.is-focus .chog-wifi{animation:iw-online-ping 1.4s ease-in-out infinite}
+
+/* Compact sign-in actions, then a framed identity once a mode is selected. */
+.chog-original .chog-identity.is-entry{display:flex;flex-wrap:wrap;align-items:center;gap:calc(var(--u)*.9);padding:0;background:none;box-shadow:none;border:0;border-radius:0}
+.chog-original .chog-login-btn{flex:none;width:auto;min-width:0;padding:.65em 1em;font-size:calc(var(--u)*1.3)}
+.chog-original .chog-login-btn .iw-btn__label{font-size:1em;white-space:nowrap}
+.chog-login-error{flex-basis:100%;margin:0;font:700 var(--fs-xs)/1.4 ChogText,sans-serif;color:#ffe0b0;text-shadow:0 1px 3px #15121c}
+.chog-login-error:empty{display:none}
+.chog-avatar-frame{position:relative;width:calc(var(--u)*6.6);height:calc(var(--u)*7.2);border-radius:calc(var(--u)*1.2);overflow:hidden;border:3px solid #ffcb67;background:#392050;box-shadow:0 0 0 3px #1b102b,inset 0 0 0 2px #fff5}
+.chog-avatar-frame.is-nft{border-color:#ffcb67;box-shadow:0 0 0 3px #342047,0 3px 0 3px #8d4b1d}
+.chog-avatar-frame.is-guest{border-color:#b8a4e2;background:#e8e4f1;box-shadow:0 0 0 3px #292037,0 3px 0 3px #55416e;border-radius:calc(var(--u)*.9)}
+.chog-avatar-frame img{width:100%;height:100%;object-fit:cover}
+.chog-avatar-frame.is-guest img{object-position:center 7%;object-fit:cover;transform:scale(1.08);transform-origin:top}
+.chog-wallet-monogram{display:grid;place-items:center;height:100%;font:400 calc(var(--u)*3) ChogDisplay;color:#ffcb67}
+.chog-profile-note{grid-column:1/-1;margin:.4em 0 0;font:700 var(--fs-xs)/1.45 ChogText,sans-serif;color:#d6cbe8}
+.chog-original .chog-account-switch{grid-column:1/-1;justify-self:start;width:auto;min-width:0;padding:.5em .8em;margin-top:.5em;font-size:var(--fs-xs)}
+
+.chog-token-input{display:block;width:100%;padding:.8em;margin-top:1em;border:2px solid #b8a4e2;border-radius:10px;background:#241b35;color:white;font:700 var(--fs-m) ChogText,sans-serif}
+
+.chog-original .chog-identity.is-entry{backdrop-filter:none;-webkit-backdrop-filter:none;justify-content:flex-end}
+.chog-original .chog-identity.is-entry::before{display:none}
+.chog-original .chog-login-btn{height:auto;min-height:calc(var(--u)*2.8);margin-bottom:0}
+
+/* Chog field gear: native navigation and stat motion, a new five-card composition. */
+.chog-equipment-link{cursor:pointer;pointer-events:auto;transition:transform .3s var(--spring)}
+.chog-equipment-link.is-focus{box-shadow:0 0 0 3px #ffbd50,0 5px 0 #2e1839}
+.chog-weapon-icon{display:block;width:100%;height:100%;object-fit:contain}
+.chog-original .iw-kitcard__icon{width:calc(var(--u)*5.8);height:calc(var(--u)*4.8)}
+.chog-original .iw-head__blob{width:2.8em;left:-.65em}
+.chog-heading-sign{display:block;width:100%;height:auto;transform-origin:50% 75%;animation:chog-sign-sway 5s ease-in-out infinite}
+@keyframes chog-sign-sway{0%,100%{transform:rotate(-7deg) translateY(0)}50%{transform:rotate(5deg) translateY(-3px)}}
+.chog-armory .iw-loadout__body{width:55%;top:calc(var(--u)*11.5);gap:calc(var(--u)*1.4)}
+.chog-armory .iw-wgrid{grid-template-columns:repeat(3,minmax(0,1fr));gap:calc(var(--u)*1.2)}
+.chog-armory .iw-wgrid.is-compact .iw-wcard{height:calc(var(--u)*9.8);padding:calc(var(--u)*.7);border-radius:calc(var(--u)*.6) calc(var(--u)*1.4)}
+.chog-armory .iw-wcard__icon{width:100%;height:calc(var(--u)*6.1)}
+.chog-armory .iw-wgrid.is-compact .iw-wcard__name{font-size:calc(var(--u)*1.25);font-family:ChogDisplay,sans-serif}
+.chog-armory .iw-wcard__kind{font-size:var(--fs-xs)}
+.chog-armory .iw-wd{display:block;padding:calc(var(--u)*1.4);border-left:4px solid #ffac28}
+.chog-armory .iw-wd__name{font-size:calc(var(--u)*2.2)}
+.chog-armory .iw-wd__blurb{margin:.7em 0 1em}
+.chog-armory .iw-wd__stats{display:grid;grid-template-columns:1fr 1fr;gap:calc(var(--u)*.8)}
+.chog-armory .iw-stat{grid-template-columns:calc(var(--u)*7) 1fr calc(var(--u)*2);gap:calc(var(--u)*.4)}
+.chog-armory .iw-stat__delta{display:none}
+.chog-ammo-rule{display:flex;align-items:center;gap:1em;border-top:1px solid #ffffff22;margin-top:1em;padding-top:.9em;font-size:var(--fs-s);color:#d7cce5}
+.chog-ammo-rule b{color:#ffbf50;font-family:ChogDisplay,sans-serif}
+.chog-armory-hero{position:absolute;right:calc(var(--u)*3.6);top:calc(var(--u)*11.5);width:33%;bottom:calc(var(--u)*8);display:flex;flex-direction:column;align-items:center;padding:calc(var(--u)*2.2);border-top:4px solid #783ee8}
+.chog-armory-hero__art{width:100%;flex:1;min-height:0;display:grid;place-items:center}
+.chog-armory-hero__image{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 15px 12px #0005)}
+.chog-armory-hero__image.is-swap{animation:iw-tip-in .4s var(--spring)}
+.chog-armory-hero__type{color:#ffbd50;font:800 var(--fs-s) ChogText,sans-serif}
+.chog-armory-hero h2{margin:.5em 0 1em;font-size:calc(var(--u)*2.7);text-align:center}
+.chog-armory-hero>.iw-btn{align-self:stretch;justify-content:center}
+@media(prefers-reduced-motion:reduce){.chog-heading-sign{animation:none}}
+.chog-armory .iw-wcard__icon{position:relative;flex:none;height:calc(var(--u)*5.6);min-height:0}
+.chog-armory .iw-wcard__icon>.chog-weapon-icon{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
+.chog-armory .iw-wcard__name,.chog-armory .iw-wcard__kind{flex:none;position:relative}
+.chog-original .iw-head__blob{width:2.4em;left:-.5em}
+
+/* Separate title, art and action tracks; raster intrinsic size cannot push them apart. */
+.chog-armory-hero{display:grid;grid-template-rows:auto minmax(0,1fr) auto;gap:calc(var(--u)*1.3)}
+.chog-armory-hero h2{margin:0;font-size:calc(var(--u)*2.5);line-height:1.15;overflow-wrap:anywhere}
+.chog-armory-hero__art{position:relative;min-width:0;min-height:0;width:100%;height:100%;overflow:hidden}
+.chog-armory-hero__image{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;filter:none}
+.chog-armory-hero>.iw-btn{width:100%;min-width:0;margin:0}
+
+.chog-armory .iw-loadout__body>.iw-seclabel[hidden]{display:none}
+
+/* Diagonal paint swipe replaces the upstream circular ink flood. */
+.chog-original .iw-btn__blob{left:-20%;top:0;width:140%;height:100%;aspect-ratio:auto;border-radius:0;transform:translateX(-105%) skewX(-16deg);transition:transform .22s cubic-bezier(.2,.7,.3,1)}
+.chog-original .iw-btn__blob::after{background:repeating-linear-gradient(112deg,transparent 0 12px,#ffffff24 12px 18px)}
+.chog-original .iw-btn.is-hover:not(.is-focus) .iw-btn__blob{transform:translateX(-84%) skewX(-16deg)}
+.chog-original .iw-btn.is-focus .iw-btn__blob{transform:translateX(0) skewX(-16deg)}
+.chog-click-paint{position:fixed;width:0;height:0;z-index:45;pointer-events:none}
+.chog-click-paint__ring{position:absolute;left:-17px;top:-12px;width:34px;height:24px;border:3px solid #ffe2a0;border-radius:40% 60% 48% 52%;animation:chog-stamp .3s ease-out forwards}
+.chog-click-paint__drop{position:absolute;left:-4px;top:-6px;width:8px;height:12px;background:var(--paint);border:1px solid #251334;border-radius:60% 40% 55% 45%;animation:chog-droplet .34s ease-out forwards}
+@keyframes chog-stamp{from{transform:rotate(-14deg) scale(.35);opacity:.95}to{transform:rotate(10deg) scale(1.8);opacity:0}}
+@keyframes chog-droplet{0%{transform:translate(0,0) rotate(var(--angle)) scale(.3);opacity:1}70%{opacity:1}100%{transform:translate(var(--dx),var(--dy)) rotate(var(--angle)) scale(.65);opacity:0}}
+@media(prefers-reduced-motion:reduce){.chog-original .iw-btn__blob{transition:none}.chog-click-paint{display:none}}
+/* Heading descriptions reuse the ROOM CODE tape geometry. */
+.chog-original .iw-head__sub,.chog-original .iw-online .iw-head__sub{--tape:#fff;position:relative;isolation:isolate;display:inline-flex;align-self:flex-start;max-width:min(76vw,calc(var(--u)*68));margin-top:calc(var(--u)*.85);padding:.5em 1em .52em .9em;background:none;border:0;border-radius:0;box-shadow:none;color:#fff;font:800 var(--fs-m)/1.35 ChogText,sans-serif;letter-spacing:normal;rotate:-2deg;text-shadow:none}
+.chog-original .iw-head__sub::before,.chog-original .iw-head__sub::after{display:block;content:'';position:absolute;inset:0;z-index:-1;background:var(--k);clip-path:polygon(1.6% 0,98.4% 3%,100% 26%,98.9% 50%,100% 76%,98.2% 100%,1.4% 96%,0 72%,1.1% 48%,0 22%)}
+.chog-original .iw-head__sub::after{z-index:-2;background:#fff;translate:calc(var(--u)*.3) calc(var(--u)*.32)}
+/* Settings: native input behavior and motion, CHOG frames and accents. */
+.chog-original .chog-settings .iw-settings__panel{border-radius:calc(var(--u)*1.6) calc(var(--u)*.7) calc(var(--u)*1.6) calc(var(--u)*.7);border:2px solid #796099;background-color:#20192f}
+.chog-original .chog-settings .iw-tabs{border-radius:calc(var(--u)*.8);border-bottom:3px solid #7542bc;padding-bottom:calc(var(--u)*.6)}
+.chog-original .chog-settings .iw-tab,.chog-original .chog-settings .iw-tabs__hl{border-radius:calc(var(--u)*.6)}
+.chog-original .chog-settings .iw-row{border:1px solid #ffffff0d;border-radius:calc(var(--u)*.65);background-color:#ffffff04}
+.chog-original .chog-settings .iw-row.is-focus{border-color:#ffb239;background:rgba(255,171,36,.12)}
+.chog-original .chog-settings .iw-slider__track{height:calc(var(--u)*.8);border-radius:4px}
+.chog-original .chog-settings .iw-slider__fill{border-radius:4px;background:linear-gradient(90deg,#ec7e19,#ffc651)}
+.chog-original .chog-settings .iw-slider__knob{border-radius:30%;background:#fff5dc}
+.chog-original .chog-settings .iw-prev{border:2px solid #796099;border-top:5px solid #ffb239;border-radius:calc(var(--u)*.8);background:linear-gradient(155deg,#332345f5,#181222f5)}
+.chog-original .chog-settings .iw-prev__head{padding:calc(var(--u)*.4) calc(var(--u)*.2) calc(var(--u)*.6);border-bottom:1px solid #ffffff20}
+.chog-original .chog-settings .iw-prev__val{border-radius:calc(var(--u)*.45);background:#ffb239;color:#25142e}
+.chog-original .chog-settings .iw-prev__stage{border-radius:calc(var(--u)*.6);box-shadow:inset 0 0 0 2px #a576d333}
+.chog-original .chog-settings .iw-prev__help{line-height:1.5}
+
+/* Texture and badges share a monochrome filter of the exact approved icon. */
+.chog-original{
+--tex-squids:url('../assets/chog-hunt-ui/chog-pattern-light-v2.svg') 0 0 / calc(var(--u)*6.4) calc(var(--u)*6.4);
+--tex-squids-k:url('../assets/chog-hunt-ui/chog-pattern-dark-v2.svg') 0 0 / calc(var(--u)*6.4) calc(var(--u)*6.4);
+}
+.chog-original .chog-mark{display:block;background:currentColor;mask:url('../assets/chog-hunt-ui/chog-mark-v2.svg') center/contain no-repeat;-webkit-mask:url('../assets/chog-hunt-ui/chog-mark-v2.svg') center/contain no-repeat}
+/* Quick Play has a match setup rail, without private-room tickets or player slots. */
+.chog-original .chog-quickplay .iw-lob__top{align-items:center}
+.chog-original .chog-quickplay .iw-lob__leave{margin-top:0}
+.chog-quick-heading{display:flex;flex-direction:column;gap:calc(var(--u)*.65)}
+.chog-quick-heading h1{margin:0;font-size:calc(var(--u)*3.1);line-height:1;color:#fff;-webkit-text-stroke:.14em #15121c;paint-order:stroke fill}
+.chog-quick-heading .iw-tape{align-self:flex-start;font-size:calc(var(--u)*.83)}
+.chog-original .chog-quickplay .iw-lob__side{top:calc(var(--u)*11.2 + var(--sat))}
+.chog-original .chog-hunt-lobby .iw-lstage{height:calc(var(--u)*8.5)}
+.chog-original .chog-hunt-lobby .iw-lob__mode > i > .chog-mark{position:static;inset:auto;width:110%;height:110%;color:#ffb239;filter:drop-shadow(2px 2px 0 #15121c)}
+.chog-original .chog-hunt-lobby .chog-mark path{stroke:none}
+.chog-original .chog-hunt-lobby .chog-mark path:last-child{stroke:currentColor;stroke-width:2.2}
+.chog-original .chog-hunt-lobby .iw-lset--time{flex:1.35}
+.chog-original .chog-hunt-lobby .iw-lset--time .iw-lset__label{white-space:nowrap}
+.chog-original .chog-hunt-lobby .iw-lstage__arrows{display:flex}
+.chog-original .chog-hunt-lobby .iw-lset--mode{pointer-events:none}
+.chog-original .chog-quickplay .iw-btn--ready{--bg:#ffac28;--ink:#21152c;--fill:#783ee8;--fill-ink:#fff}
+
+.chog-original .chog-hunt-lobby .iw-btn--ready{display:flex}
+
+/* Footer shortcut clusters are removed on every screen, including modal states. */
+.chog-original .iw-prompts{display:none!important}
+/* Fill up to the actual wavy paint edge without spilling onto the arena. */
+.chog-original .iw-lob__band::after{top:0;mask-image:var(--chog-band-mask);mask-size:100% 100%;mask-repeat:no-repeat;-webkit-mask-image:var(--chog-band-mask);-webkit-mask-size:100% 100%;-webkit-mask-repeat:no-repeat}
+.chog-original .chog-hunt-lobby .iw-lob__mode{font-size:calc(var(--u)*2.3);padding-right:calc(var(--u)*1.15)}
+.chog-original .chog-hunt-lobby .iw-lob__mode::before{top:3%;bottom:0}
+
+/* Give the native focus outline/drips room around the stage preview. */
+.chog-original .chog-hunt-lobby .iw-lset__panel{padding-top:calc(var(--u)*2.15);gap:calc(var(--u)*.8)}
+.chog-original .chog-hunt-lobby .iw-lset--stage{gap:calc(var(--u)*.75);padding-bottom:calc(var(--u)*.9)}
+.chog-original .chog-hunt-lobby .iw-lset__label{min-height:calc(var(--u)*1.5);line-height:1.2}
+.chog-original .chog-hunt-lobby .iw-lset__pair{gap:calc(var(--u)*.75);margin-top:calc(var(--u)*.4)}
+.chog-original .chog-hunt-lobby .iw-lset--time,.chog-original .chog-hunt-lobby .iw-lset--len{gap:calc(var(--u)*.65)}
+
+/* Scale the full setup group equally in both dimensions, preserving spacing. */
+.chog-original .chog-hunt-lobby .iw-lob__side{transform:scale(1.2);transform-origin:top left}
+
+/* Online: CHOG host ticket, code panel and player card on native controls. */
+.chog-original .chog-online .iw-hubcard{border-radius:calc(var(--u)*1.4) calc(var(--u)*.55) calc(var(--u)*1.4) calc(var(--u)*.55)}
+.chog-original .chog-online .iw-hubcard--create{grid-template-columns:calc(var(--u)*5.6) 1fr auto;gap:calc(var(--u)*1.2);min-height:calc(var(--u)*10.4)}
+.chog-original .chog-online .iw-hubcard--create .iw-hubcard__bg{background:var(--tex-squids),linear-gradient(115deg,#6431ad,#3a205d);border-left:calc(var(--u)*.6) solid #ffb239;animation:none}
+.chog-original .chog-online .iw-hubcard__icon{width:calc(var(--u)*5.6);height:calc(var(--u)*5.6);border-radius:30% 20% 30% 20%;background:#ffb239;color:#301747;box-shadow:0 0 0 3px #181221,4px 5px 0 #181221}
+.chog-original .chog-online .iw-hubcard__icon > i{width:88%;height:88%}
+.chog-original .chog-online .iw-hubcard__icon .chog-mark{width:100%;height:100%}
+.chog-original .chog-online .iw-hubcard__title{font-size:calc(var(--u)*2.65);margin-top:.35em}
+.chog-original .chog-online .iw-hubcard__sub{font-size:calc(var(--u)*1);line-height:1.45}
+.chog-original .chog-online .iw-hubcard__go{padding:calc(var(--u)*.65);border-radius:50%;background:#ffb239;color:#24152f;rotate:0deg}
+.chog-original .chog-online .iw-hubcard__go > i{display:block;width:calc(var(--u)*1.5);height:calc(var(--u)*1.5)}
+.chog-original .chog-online .iw-hubcard__go svg{width:100%;height:100%}
+.chog-original .chog-online .iw-hubcard--join .iw-hubcard__bg{background:var(--tex-squids),linear-gradient(155deg,#30213e,#1d172c);border-top:calc(var(--u)*.3) solid #ffb239}
+.chog-original .chog-online .iw-join__head{align-items:center;padding-bottom:calc(var(--u)*.65);border-bottom:1px solid #b68ade40}
+.chog-original .chog-online .iw-minibtn{border-radius:calc(var(--u)*.65);height:calc(var(--u)*3);font-size:calc(var(--u)*1)}
+.chog-original .chog-online .iw-minibtn.is-go{background:#ffb239;color:#24152f}
+.chog-original .chog-online .iw-code{gap:calc(var(--u)*.9)}
+.chog-original .chog-online .iw-code__box{height:calc(var(--u)*6.3);border-radius:calc(var(--u)*.6);background:#161020;box-shadow:inset 0 0 0 2px #a576ca65,inset 0 -5px 0 #ffffff09}
+.chog-original .chog-online .iw-code__box:not(.is-filled)::before{display:none}
+.chog-original .chog-online .iw-code__box.is-filled{background:#fff4dc;color:#24152f}
+.chog-original .chog-online .iw-code__box.is-caret{box-shadow:0 0 0 3px #ffb239,inset 0 0 0 2px #20152c}
+.chog-original .chog-online .iw-hubstep{background:#291d3c;color:#fff;border-radius:calc(var(--u)*.55);box-shadow:0 0 0 2px #75538d,0 5px 0 #17111f}
+.chog-original .chog-online .iw-hubstep > b{width:2em;height:2em;margin:0;border-radius:30%;background:#ffb239;color:#24152f}
+.chog-original .chog-online .iw-hubstep > b span{font-size:1em}
+.chog-original .chog-online .iw-hubstep > i .chog-mark{width:100%;height:100%}
+.chog-original .chog-player-name .iw-stag__art{background:var(--tex-squids),linear-gradient(130deg,#6636a6,#2b1c40);border-left:calc(var(--u)*.4) solid #ffb239}
+.chog-original .chog-player-name .iw-stag{border-radius:calc(var(--u)*1.2) calc(var(--u)*.5);box-shadow:0 0 0 3px #fff,0 0 0 6px #20152e,6px 9px 0 #20152e}
+
+.chog-original .chog-player-name .iw-stag__art > svg{display:none}
+
+.chog-original .chog-online .iw-hubstep > i{color:#d5bdff}
+
+/* Every page uses the same text-only LEAVE button. */
+.chog-original .iw-backbtn.chog-leave{display:inline-flex;align-items:center;justify-content:center;gap:0;box-sizing:border-box;height:calc(var(--u)*3.5);min-width:calc(var(--u)*7.3);padding:0 calc(var(--u)*1.25);border:2px solid #f5ecff;border-radius:calc(var(--u)*.8);background:#291d3c;color:#fff;box-shadow:0 0 0 3px #17121f,0 5px 0 3px #17121f;font:400 calc(var(--u)*1.3)/1 ChogDisplay,ChogText,sans-serif;letter-spacing:0;rotate:0deg;text-shadow:none}
+.chog-original .iw-backbtn.chog-leave:hover{background:#ffb239;color:#24152e;transform:translateY(-2px)}
+
+/* Angular match dock: stepped frame with an inner rail instead of paint waves. */
+.chog-original .chog-match-dock .chog-dock__shape{fill:url(#chog-dock-fill);stroke:#ffb239;stroke-width:3px;vector-effect:non-scaling-stroke}
+.chog-original .chog-match-dock .chog-dock__rail{fill:none;stroke:#9860d6;stroke-width:2px;vector-effect:non-scaling-stroke}
+.chog-original .chog-match-dock .chog-dock__detail{fill:none;stroke:#ffb239;stroke-width:2px;opacity:.5;vector-effect:non-scaling-stroke}
+
+/* Live demo wallet: compact home card, separate asset management in MY NFT. */
+.chog-wallet-status{grid-column:1/-1;flex-basis:100%;margin:.45em 0 0;color:#ffe0a2;font:700 var(--fs-xs)/1.4 ChogText,sans-serif;overflow-wrap:anywhere}
+.chog-wallet-status:empty{display:none}
+.chog-wallet-balance{margin:.6em 0 0;color:#ffca68;font:800 var(--fs-s)/1.2 ChogText,sans-serif}
+.chog-game-balance{display:flex;flex-wrap:wrap;align-items:baseline;gap:.4em 1em;margin:.7em 0 0;padding:.65em .85em;border-left:3px solid #ffac28;background:#191123;border-radius:4px;font-family:ChogText,sans-serif}
+.chog-game-balance span{font-size:11px;letter-spacing:.08em;color:#d4bfed;font-weight:800}
+.chog-game-balance strong{font-size:20px;color:#ffca68;font-weight:900;font-variant-numeric:tabular-nums}
+.chog-wallet-actions{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:.65em;margin-top:.6em}
+.chog-original .chog-wallet-action{width:auto;min-width:0;margin:0;padding:.65em .9em;font-size:var(--fs-xs);height:auto}
+.chog-original .chog-wallet-action:disabled{opacity:.55;cursor:wait}
+.chog-original .chog-wallet-action .iw-btn__label{white-space:normal}
+.chog-original .chog-identity.is-entry .chog-wallet-action{font-size:calc(var(--u)*1.2)}
+.chog-original .chog-wallet-body{grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);bottom:calc(var(--u)*2);overflow-y:auto;padding:.5em;align-items:start}
+.chog-wallet-card{padding:calc(var(--u)*1.7);border:2px solid #9f80d7;border-radius:calc(var(--u)*1.5);background:linear-gradient(135deg,#2e2343f5,#15111ff5);box-shadow:0 .5em 0 #100d19c9;min-width:0;color:#fff;font:700 var(--fs-s)/1.4 ChogText,sans-serif}
+.chog-wallet-kicker{display:block;letter-spacing:.13em;font-size:var(--fs-xs);color:#c8b4ea}
+.chog-wallet-card h2{margin:.5em 0 .2em;font-size:calc(var(--u)*2.1)}
+.chog-wallet-portrait{width:calc(var(--u)*12);height:calc(var(--u)*12);max-width:100%;margin:1em auto;display:grid;place-items:center;background:radial-gradient(circle,#6e3ca1,#2b1a44);border:3px solid #ffbf5c;border-radius:22%;box-shadow:0 0 0 5px #1c122b,0 .4em 0 5px #392542}
+.chog-wallet-portrait img{width:92%;height:92%;object-fit:contain}
+.chog-wallet-badge{display:inline-block;padding:.45em .7em;border:1px solid #9f80d7;border-radius:.6em;background:#4c2c6d;font-size:var(--fs-xs)}
+.chog-wallet-amount{font:400 calc(var(--u)*3.3)/1.2 ChogDisplay,sans-serif;color:#ffd17e;margin:.35em 0}
+.chog-wallet-amount small{display:block;font:800 var(--fs-s)/1.5 ChogText,sans-serif;color:#e7dff2}
+.chog-wallet-muted{color:#d2c5e1;font-size:var(--fs-xs);line-height:1.5}
+.chog-wallet-contracts{display:flex;flex-wrap:wrap;gap:.6em;margin-top:1em;font-size:var(--fs-xs)}
+.chog-wallet-contracts a,.chog-wallet-faucet{color:#ffd17e;text-decoration:underline;text-underline-offset:.2em}
+.chog-wallet-faucet{display:inline-block;margin-top:1.3em;font-size:var(--fs-xs)}
+.chog-wallet-body .chog-wallet-status{padding:.7em;background:#1b1428;border-radius:.6em;border-left:3px solid #ffb943}
+.chog-wallet-screen .iw-head__sub{max-width:100%}
+@media(max-width:650px){.chog-original .chog-wallet-body{grid-template-columns:1fr}.chog-wallet-portrait{width:100px;height:100px}}
+
+.chog-original .chog-wallet-body .chog-wallet-action{font-size:var(--fs-s)}
+
+.chog-genesis-traits{display:flex;flex-wrap:wrap;gap:.45em;margin-top:1em}
+.chog-wallet-portrait img{border-radius:18%}
+
+/* MY NFT follows the framed CHOG menu cards. Reserve space for the native cursor. */
+.chog-original .chog-wallet-body{
+  top:calc(var(--u)*11.3 + var(--sat));bottom:calc(var(--u)*2.2 + var(--sab));
+  grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:calc(var(--u)*2.5);
+  padding:calc(var(--u)*.75);scroll-padding-block:calc(var(--u)*1.2);
+}
+.chog-wallet-screen .chog-wallet-card{
+  padding:calc(var(--u)*1.4);border:2px solid #f5ecff;
+  border-radius:calc(var(--u)*1.4) calc(var(--u)*.6) calc(var(--u)*1.4) calc(var(--u)*.6);
+  background-color:#241b33;background-image:var(--tex-squids);background-size:calc(var(--u)*20);
+  box-shadow:0 0 0 4px #17121f,0 calc(var(--u)*.5) 0 4px #17121f;
+  display:flex;flex-direction:column;gap:calc(var(--u)*.7);
+}
+.chog-wallet-screen .chog-wallet-kicker{
+  align-self:flex-start;padding:.55em .85em;background:#15101f;border-radius:.2em;
+  box-shadow:3px 4px 0 #ffb239;color:#fff;font-weight:900;line-height:1.35;
+}
+.chog-wallet-screen .chog-wallet-card h2{margin:0;line-height:1.15}
+.chog-wallet-screen .chog-wallet-card p{margin:0;line-height:1.55;overflow-wrap:anywhere}
+.chog-wallet-screen .chog-wallet-card--profile > .chog-wallet-badge{align-self:flex-start}
+.chog-wallet-screen .chog-wallet-portrait{
+  width:calc(var(--u)*10);height:calc(var(--u)*10);margin:calc(var(--u)*.25) auto calc(var(--u)*.45);
+  flex-shrink:0;background:#30203e;border-color:#ffb239;border-radius:calc(var(--u)*2);
+  box-shadow:0 0 0 4px #17121f,0 6px 0 4px #17121f;overflow:hidden;
+}
+.chog-wallet-screen .chog-wallet-portrait img{width:100%;height:100%;border-radius:0;object-fit:cover}
+.chog-wallet-screen .chog-wallet-badge{background:#332242;border-color:#a68aba;line-height:1.45}
+.chog-wallet-screen .chog-genesis-traits{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:calc(var(--u)*.7);margin-top:calc(var(--u)*.35)}
+.chog-wallet-screen .chog-genesis-trait{padding:.65em .8em;min-width:0;overflow-wrap:anywhere}
+.chog-wallet-screen .chog-genesis-trait__label{display:block;font-size:.86em;color:#c9b6da;line-height:1.4;margin-bottom:.3em}
+.chog-wallet-screen .chog-genesis-trait strong{display:block;color:#fff;font-weight:850;line-height:1.4}
+.chog-wallet-screen .chog-wallet-amount{margin:calc(var(--u)*.35) 0;font-variant-numeric:tabular-nums;line-height:1.1}
+.chog-wallet-screen .chog-wallet-amount small{margin-top:.55em}
+.chog-wallet-screen .chog-wallet-status{padding:calc(var(--u)*.85) calc(var(--u)*1);border:1px solid #9472b1;border-left:4px solid #ffb239;line-height:1.5;flex-basis:auto}
+.chog-wallet-screen .chog-wallet-contracts{
+  display:flex;flex-wrap:wrap;gap:calc(var(--u)*.8);margin:0;
+  padding:calc(var(--u)*.5) 0 calc(var(--u)*.3);
+}
+.chog-wallet-screen .chog-wallet-contracts a{display:inline-block;background:#15101f;border:1px solid #7e648f;border-radius:.4em;padding:.6em .75em;text-decoration:none;line-height:1.4}
+.chog-original .chog-wallet-screen .chog-wallet-actions{
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:max(18px,calc(var(--u)*1.35)) max(20px,calc(var(--u)*1.5));
+  margin:0;padding:max(16px,calc(var(--u)*1.1)) max(12px,calc(var(--u)*.75)) max(18px,calc(var(--u)*1.25));
+  border-top:1px solid #a68aba45;border-bottom:1px solid #a68aba45;
+}
+.chog-original .chog-wallet-screen .chog-wallet-action{
+  display:flex;align-items:center;justify-content:center;width:100%;min-width:0;
+  min-height:calc(var(--u)*3.1);padding:calc(var(--u)*.85) calc(var(--u)*1);
+  border-radius:calc(var(--u)*.65);font-size:calc(var(--u)*.92);line-height:1.35;
+  box-shadow:0 0 0 2px #aa91bd,0 calc(var(--u)*.25) 0 2px #15101f;
+}
+.chog-original .chog-wallet-screen .chog-wallet-action .iw-btn__label{line-height:1.35;text-align:center;overflow-wrap:anywhere}
+.chog-original .chog-wallet-screen .chog-wallet-action.is-focus{
+  transform:none;box-shadow:0 0 0 2px #ffb239,0 calc(var(--u)*.25) 0 2px #15101f;
+}
+.chog-wallet-screen .chog-wallet-faucet{align-self:flex-start;margin:0;padding:.4em 0;line-height:1.5}
+@media(max-width:850px){
+  .chog-original .chog-wallet-body{grid-template-columns:1fr}
+  .chog-wallet-screen .chog-genesis-traits{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media(max-width:450px){
+  .chog-wallet-screen .chog-genesis-traits{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .chog-original .chog-wallet-screen .chog-wallet-actions{grid-template-columns:1fr}
+}
+
+@media(max-width:850px){
+ .chog-wallet-screen .chog-wallet-card{padding:max(18px,calc(var(--u)*1.75));gap:max(14px,calc(var(--u)*1.1))}
+ .chog-original .chog-wallet-screen .chog-wallet-action{min-height:44px;font-size:max(12px,calc(var(--u)*.92));padding:12px}
+ .chog-wallet-screen .chog-wallet-muted,.chog-wallet-screen .chog-wallet-status,.chog-wallet-screen .chog-wallet-contracts,.chog-wallet-screen .chog-wallet-faucet{font-size:max(12px,var(--fs-xs))}
+ .chog-wallet-screen .chog-wallet-badge{font-size:max(11px,var(--fs-xs))}
+}
+
+@media(min-width:1200px){.chog-wallet-screen .chog-genesis-traits{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.chog-wallet-screen .chog-wallet-body{scrollbar-width:thin;scrollbar-color:#9d7fba #20162e}
+
+/* Shared frame treatment: the actual TRAIT HUNT panel and MY NFT cards. */
+.chog-original .iw-lset__panel,
+.chog-original .chog-wallet-screen .chog-wallet-card{
+  border:0;
+  border-radius:calc(var(--u)*1.4) calc(var(--u)*.9) calc(var(--u)*1.6) calc(var(--u)*1) / calc(var(--u)*1) calc(var(--u)*1.5) calc(var(--u)*1) calc(var(--u)*1.4);
+  background:var(--tex-grain),url('../assets/chog-hunt-ui/chog-pattern-light-v2.svg') 0 0 / calc(var(--u)*6.4) calc(var(--u)*6.4),linear-gradient(175deg,#2d2349,#1b1430);
+  box-shadow:0 0 0 calc(var(--u)*.16) #fff,0 0 0 calc(var(--u)*.42) #15121c,calc(var(--u)*.42) calc(var(--u)*.52) 0 calc(var(--u)*.42) #15121c;
+}
+.chog-original .chog-wallet-screen .chog-wallet-card{rotate:0deg;isolation:isolate}
+/* Keep transition paint behind the complete locker screen, including its scroll area. */
+.chog-original[data-screen="locker"] .iw-wipe{z-index:0}
+.chog-original[data-screen="locker"] .iw-ui__layer{z-index:1}
+.chog-original[data-screen="locker"] .chog-click-paint{display:none}
+.chog-nft-traits{margin-top:calc(var(--u)*.4)}
+.chog-nft-traits__head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:.8em;padding:.75em .1em;margin-bottom:.6em;border-bottom:2px solid #ad8cce55;font:900 var(--fs-xs)/1.4 ChogText,sans-serif}
+.chog-nft-traits__head > span{font-size:.8em;color:#d5c4e6}
+.chog-wallet-screen .chog-genesis-traits{gap:max(10px,calc(var(--u)*.7));margin-top:0}
+.chog-wallet-screen .chog-genesis-trait{
+  background:var(--tex-grain),linear-gradient(165deg,#47315c,#2c213e);border:2px solid #b69bce;
+  border-radius:calc(var(--u)*.7) calc(var(--u)*.4) calc(var(--u)*.7) calc(var(--u)*.4);
+  box-shadow:0 3px 0 1px #15121c;padding:.7em .8em;display:flex;flex-direction:column;gap:.3em;
+}
+.chog-wallet-screen .chog-genesis-trait__label{margin:0;color:#d7bdf3;font-weight:900;text-transform:uppercase;font-size:.78em}
+.chog-wallet-screen .chog-genesis-trait strong{flex:1}
+.chog-genesis-trait__stats{display:flex;align-items:center;justify-content:space-between;gap:.6em;margin-top:.5em;padding:.35em .55em;background:#171120;border-radius:.35em;color:#fff;font-variant-numeric:tabular-nums;font-size:.9em}
+.chog-genesis-trait__stats > span{color:#ffbf52;font-weight:900}
+
+/* YOUR CHOG: portrait at left, identity details alongside it. */
+.chog-wallet-summary{display:grid;grid-template-columns:minmax(100px,calc(var(--u)*10)) minmax(0,1fr);align-items:center;gap:max(20px,calc(var(--u)*1.5));margin:calc(var(--u)*.6) 0}
+.chog-wallet-screen .chog-wallet-summary .chog-wallet-portrait{width:100%;height:auto;aspect-ratio:1;margin:0}
+.chog-wallet-summary__info{display:flex;flex-direction:column;align-items:flex-start;gap:max(10px,calc(var(--u)*.7));min-width:0}
+.chog-wallet-summary__info .chog-wallet-badge{max-width:100%;overflow-wrap:anywhere}
+.chog-wallet-screen .chog-wallet-summary__info h2{font-size:calc(var(--u)*1.8)}
+@media(max-width:450px){
+ .chog-wallet-summary{grid-template-columns:90px minmax(0,1fr);gap:14px;align-items:start}
+ .chog-wallet-screen .chog-wallet-summary__info h2{font-size:20px}
+ .chog-wallet-summary__info > p{font-size:11px}
+ .chog-wallet-summary__info .chog-wallet-badge{font-size:9px}
+}
+
+/* One red paint palette across menu headings, HUD announcements and result art. */
+.chog-original,.chog-original-hud{--chog-paint:#ed1748;--chog-paint-dark:#b70b38;--chog-paint-light:#ff4166}
+.chog-original .iw-paint-splat>*,.chog-original-hud .iw-paint-splat>*{fill:var(--chog-paint)!important}
+.chog-original .iw-paint-splat>.iw-fb,.chog-original-hud .iw-paint-splat>.iw-fenemy{fill:var(--chog-paint-dark)!important}
+.chog-original .iw-burst,.chog-original-hud .iw-burst{color:var(--chog-paint)!important}
+.chog-original .iw-burst__drop,.chog-original-hud .iw-burst__drop,.chog-original .chog-click-paint__drop{background:var(--chog-paint)!important}
+.chog-original .chog-click-paint__ring{border-color:var(--chog-paint-light)}
+/* Player names stand alone: no cycling weapon badges in roster or world tags. */
+.chog-original .iw-rrow__w,.chog-original .iw-stag__w,.chog-original-hud .iw-mk__w,.chog-original-hud .iw-lg__w,.chog-original-hud .iw-lu__w,.chog-original-hud .iw-kcard__w{display:none!important}
+
+.chog-original .iw-rrow{grid-template-columns:minmax(0,1fr) auto}
+.chog-original-hud .iw-mk__tag{gap:.35em}
+
+/* Decorative match paint uses the main-menu red palette, independently of role/weapon colors.
+   SVG splats are covered above; these particles/ribbons use CSS or unmarked icon SVGs. */
+.chog-original-hud :is(.iw-bn__drop,.iw-kill i,.iw-call__ribbon,.iw-bend__drop){background:var(--chog-paint)!important}
+.chog-original-hud :is(.iw-kill__splat,.iw-feed__icon,.iw-bn__sicon){color:var(--chog-paint)!important}
+.chog-original-hud :is(.iw-bn__splat,.iw-spl__splat,.iw-kcard__splat,.iw-jd__winsplat,.iw-jz__kosplat) svg :is(path,circle){fill:var(--chog-paint)!important}
+.chog-original-hud .iw-bn__splat.b svg :is(path,circle){fill:var(--chog-paint-dark)!important}
+.chog-original .iw-res__head.is-lose .iw-res__splat{filter:none}
+.chog-original-hud :is(.iw-bn--go,.iw-bn--timesup) .iw-bn__text{font-size:clamp(28px,7vw,100px)}
+.chog-original .chog-hunt-results .iw-res__title{font-size:clamp(28px,5.5vw,84px)}
+
+/* The same CHOG sign used by the Settings heading backs match titles. */
+.chog-original-hud .iw-bn__splat,.chog-original .chog-hunt-results .iw-res__splat{
+ background:url('../assets/chog-hunt-ui/chog-sign-v1.png') center / contain no-repeat;clip-path:none;
+}
+.chog-original-hud .iw-bn__splat svg,.chog-original .chog-hunt-results .iw-res__splat svg{display:none}
+.chog-original-hud :is(.iw-bn--go,.iw-bn--timesup) .iw-bn__splat{left:50%;top:50%;width:72%;height:240%;background-size:100% 100%;animation:none;rotate:0deg;translate:-50% -50%}
+.chog-original-hud .iw-bn__splat.b,.chog-original-hud .iw-bn__burst{display:none}
+.chog-original .chog-hunt-results .iw-res__splat{display:none}
+.chog-original .chog-hunt-results .iw-res__head{top:calc(var(--u)*7)}
+.chog-original .chog-hunt-results .iw-res__title{position:relative;isolation:isolate}
+.chog-original .chog-hunt-results .iw-res__title::before{content:'';position:absolute;z-index:-1;left:50%;top:50%;width:72%;height:240%;transform:translate(-50%,-50%);background:url('../assets/chog-hunt-ui/chog-sign-v1.png') center / 100% 100% no-repeat}
+/* The title has its sign; controls remain separate, with no lower information panel. */
+.chog-original-hud .chog-hunt-exhausted .iw-spl__card{bottom:7%;width:min(90vw,650px);padding:25px 30px;display:flex;flex-direction:column;gap:26px;background:none;clip-path:none;isolation:isolate}
+.chog-original-hud .chog-hunt-exhausted .iw-spl__text{position:relative;align-items:center;width:100%;padding:22px 0;isolation:isolate}
+
+.chog-original-hud .chog-hunt-exhausted .iw-spl__by{padding:0;background:none;border-radius:0;rotate:0;font:clamp(19px,2.6vw,34px)/1.1 ChogDisplay,sans-serif;letter-spacing:.03em;text-align:center;color:#fff;text-shadow:3px 3px 0 #15121c,-3px -3px 0 #15121c,3px -3px 0 #15121c,-3px 3px 0 #15121c}
+.chog-original-hud .chog-hunt-exhausted .chog-hunt-out-balance{font-size:13px;text-align:center}
+.chog-original-hud .chog-hunt-out-actions{width:100%;display:flex;justify-content:center;align-items:center;gap:20px;pointer-events:auto}
+.chog-original-hud .chog-hunt-out-actions .iw-btn{min-width:0;max-width:270px}
+.chog-original-hud .chog-hunt-out-actions .chog-wallet-action{flex:none;font-size:max(14px,calc(var(--u)*1.2));min-height:44px;--bg:var(--a);--fill:#fff;--fill-ink:var(--k);color:var(--a-ink);height:auto}
+.chog-original-hud .chog-hunt-out-actions .chog-wallet-action.is-focus{color:var(--fill-ink)}
+.chog-original .chog-hunt-results .chog-wallet-action{--bg:var(--a);color:var(--a-ink)}
+.chog-original .chog-hunt-results .chog-wallet-action.is-focus{color:var(--fill-ink)}
+.chog-pause-cover .chog-original .iw-head__blob{background:none;clip-path:none}
+
+.chog-original-hud .chog-hunt-exhausted .iw-spl__by{position:relative;isolation:isolate}
+.chog-original-hud .chog-hunt-exhausted .iw-spl__by::before{content:'';position:absolute;z-index:-1;left:50%;top:50%;width:72%;height:300%;transform:translate(-50%,-50%);background:url('../assets/chog-hunt-ui/chog-sign-v1.png') center / 100% 100% no-repeat}
+
+/* Keep the result subtitle readable above the enlarged decorative sign. */
+.chog-original .chog-hunt-results .iw-res__meta{position:relative;z-index:1}
+.chog-original .chog-hunt-results .chog-wallet-action{font-size:max(14px,calc(var(--u)*1.2));min-height:44px}
+
+/* Quick Play uses the Online header component and its original animated sign. */
+.chog-original .chog-quickplay .chog-quick-heading{position:relative;left:auto;top:auto;display:flex;flex-direction:row;gap:0}
+.chog-original .chog-quick-heading .iw-head__title{rotate:-3deg;font-size:calc(var(--u)*4.2)}
+
+/* CHOG match art: retain native timing/layout hooks without the ink silhouettes. */
+.chog-original-hud :is(.iw-spl__splat,.iw-kcard__splat,.iw-lu__vsplat,.iw-call__ribbon){
+ background:url('../assets/chog-hunt-ui/chog-sign-v1.png') center/contain no-repeat;
+ clip-path:none;
+}
+.chog-original-hud :is(.iw-spl__splat,.iw-kcard__splat,.iw-lu__vsplat) > svg{display:none}
+.chog-original-hud .iw-spl__splat{left:44%;top:50%;width:72%;height:210%;scale:1;rotate:0}
+.chog-original-hud .chog-recovery .iw-spl__text{align-items:center;text-align:center}
+.chog-original-hud .chog-recovery .iw-spl__by{background:none;rotate:0;padding:.25em 0;font-family:var(--font-display);font-size:calc(var(--u)*3.4);letter-spacing:.02em;-webkit-text-stroke:5px #15121c;paint-order:stroke fill;text-shadow:0 3px 0 #15121c}
+.chog-original-hud .iw-kcard__splat{height:170%;scale:1;rotate:0}
+.chog-original-hud .iw-call__ribbon{background:url('../assets/chog-hunt-ui/chog-sign-v1.png') center/100% 100% no-repeat!important}
+.chog-original-hud :is(.iw-kill i,.iw-bn__drop,.iw-bend__drop){display:none}
+.chog-original-hud .iw-feed__icon{background:#ed1748;color:#fff!important;border-radius:3px;clip-path:polygon(14% 0,86% 0,100% 14%,100% 86%,86% 100%,14% 100%,0 86%,0 14%)}
+.chog-original-hud .iw-feed__icon svg{width:92%;height:92%}
+
+/* Sea recovery follows the native title + countdown composition. The backing
+   reuses Pause's exact sign and sway, independently of the countdown animation. */
+.chog-original-hud .chog-water-recovery .iw-spl__splat{left:0;top:50%;width:calc(100% - var(--u)*10);height:210%;translate:0 -50%;background:none;display:grid;place-items:center}
+.chog-original-hud .chog-water-recovery .iw-spl__splat .chog-heading-sign{width:100%;height:100%;object-fit:contain}
+
+/* Shared menu drips retain their motion with the CHOG palette. */
+.chog-original :is(.iw-ss__drips,.iw-lset__drips,.iw-hubcard__drips) :is(path,circle){fill:#ed1748!important}
+
+/* Profile, wallet selection and NFT browser share the game's existing panel/button motion. */
+.chog-original .chog-identity{padding:calc(var(--u)*1.4);gap:calc(var(--u)*1);border:2px solid #fff;border-radius:18px;background:var(--tex-squids),linear-gradient(135deg,#30213e,#171322)}
+.chog-original .chog-identity .chog-avatar-frame{width:calc(var(--u)*7);height:calc(var(--u)*7)}
+.chog-original .chog-identity .iw-profile__name{font-size:calc(var(--u)*1.6);margin-bottom:.5em}
+.chog-original .chog-identity .chog-game-balance{margin:0;padding:.6em .8em}
+.chog-original .chog-identity .chog-wallet-actions{gap:.55em;margin-top:.6em}
+.chog-original .chog-wallet-action:disabled{cursor:default}
+.chog-original .chog-equipment-link{position:absolute;right:calc(var(--u)*3.8);bottom:calc(var(--u)*7);width:calc(var(--u)*30);height:calc(var(--u)*7);margin:0;font-size:calc(var(--u)*1.9)}
+.chog-original .chog-equipment-link .iw-btn__icon{width:3em;height:3em}
+.chog-original .chog-equipment-link .iw-btn__icon img{width:100%;height:100%;object-fit:contain}
+.chog-original .chog-equipment-link .iw-btn__sub{font-size:calc(var(--u)*.75)}
+.chog-wallet-picker .iw-modal__card{position:relative;width:min(850px,88vw);padding:40px 35px 30px;border:3px solid #fff;border-radius:18px;background:var(--tex-squids),linear-gradient(135deg,#30213e,#171322)}
+.chog-wallet-picker .iw-modal__title{font-size:clamp(24px,3vw,42px);padding-right:24px}
+.chog-wallet-picker .iw-modal__text{min-height:2.7em;margin:14px 0 24px}
+.chog-wallet-picker .iw-modal__btns{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:18px;max-height:48vh;overflow:auto;padding:10px}
+.chog-wallet-picker .chog-wallet-tile{width:100%;height:auto;aspect-ratio:1;min-width:0;margin:0;padding:14px;border-radius:16px;font-size:16px}
+.chog-wallet-picker .chog-wallet-tile .iw-btn__label{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;white-space:normal;min-width:0}
+.chog-wallet-logo,.chog-wallet-logo-fallback{width:52px;height:52px;object-fit:contain;border-radius:12px}
+.chog-wallet-logo-fallback{display:grid;place-items:center;background:#5b4187;font:28px ChogDisplay}
+.chog-wallet-picker .chog-wallet-tile small{font:800 13px ChogText,sans-serif;line-height:1.2;text-align:center;overflow-wrap:anywhere}
+.chog-wallet-picker .chog-wallet-close{position:absolute;right:16px;top:14px;width:42px;height:42px;min-width:0;padding:0;margin:0;font-size:26px}
+.chog-original .chog-nft-armory{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:calc(var(--u)*2);overflow:visible}
+.chog-nft-browser{min-height:0;display:flex;flex-direction:column;gap:15px}
+.chog-nft-list{display:flex;gap:12px;overflow:auto;flex:none;padding:6px}
+.chog-original .chog-nft-option{width:150px;flex:none;min-height:75px;height:auto;font-size:14px}
+.chog-nft-details{overflow:auto;min-height:0;padding:24px}
+.chog-nft-details h2{margin:10px 0 20px}
+.chog-nft-stat-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.chog-nft-stat{display:grid!important;grid-template-columns:1fr auto;gap:5px;padding:8px 0;border-bottom:1px solid #ffffff20}
+.chog-nft-stat .iw-stat__label{font-size:11px;color:#c4b5d5;grid-column:1/-1}
+.chog-nft-stat strong{font-size:14px;grid-column:1/-1}
+.chog-nft-stat-track{height:6px;background:#100d19;border-radius:4px;align-self:center;overflow:hidden}
+.chog-nft-stat-track i{display:block;height:100%;background:#ffb239}
+.chog-nft-stat small{font-size:11px;color:#ffca68}
+.chog-nft-armory .chog-armory-hero{position:relative!important;inset:auto!important;width:auto!important;min-height:0}
+.chog-nft-armory .chog-armory-hero__art{min-height:0;flex:1}
+.chog-nft-armory .chog-armory-hero__image{max-height:48vh;object-fit:contain;border-radius:18px}
+@media(max-width:700px){.chog-original .chog-nft-armory{gap:12px}.chog-nft-stat-list{grid-template-columns:1fr}.chog-nft-details{padding:12px}.chog-wallet-picker .iw-modal__btns{gap:10px;grid-template-columns:repeat(auto-fit,minmax(90px,1fr))}.chog-wallet-logo{width:42px;height:42px}}
+
+.chog-original .chog-nft-option .iw-btn__icon{width:72px;height:72px;flex:none}
+.chog-nft-thumb{width:100%;height:100%;object-fit:contain;border-radius:8px}
+.chog-original .chog-nft-option{display:flex;flex-direction:column;padding:12px;gap:8px}
+.chog-original .chog-nft-option .iw-btn__label{font-size:12px}
+.chog-original .chog-nft-option.is-equipped{outline:2px solid #ffb239;outline-offset:2px}
+
+.chog-wallet-picker .iw-modal__btns{grid-template-columns:repeat(auto-fit,minmax(100px,120px));justify-content:center;max-height:48vh}
+.chog-wallet-picker .chog-wallet-tile{display:grid;place-items:center;aspect-ratio:1;height:120px;width:120px;box-sizing:border-box}
+.chog-wallet-picker .chog-wallet-tile .iw-btn__text{width:100%;min-width:0}
+.chog-wallet-picker .chog-wallet-tile .iw-btn__label{width:100%;text-align:center}
+.chog-wallet-picker .chog-wallet-close .iw-btn__text{width:100%;text-align:center}
+.chog-original .chog-nft-armory .chog-nft-browser{animation:none!important}
+
+.chog-original .chog-nft-armory{align-items:stretch}
+.chog-nft-armory .chog-armory-hero{height:calc(100vh - var(--u)*17);box-sizing:border-box;grid-template-rows:auto minmax(180px,1fr) auto}
+.chog-nft-armory .chog-armory-hero__art{height:100%;min-height:180px}
+.chog-nft-armory .chog-armory-hero__image{position:absolute;inset:0;width:100%;height:100%;max-height:none;padding:12px;box-sizing:border-box}
+.chog-original .chog-nft-details .iw-stat__label{display:block;min-height:0}
+.chog-original .chog-nft-details{flex:1}
+
+.chog-original .chog-nft-details{display:block}
+.chog-original .chog-nft-details h2{text-align:left;margin:10px 0 20px;font-size:calc(var(--u)*2)}
+.chog-nft-stat-list{width:100%;gap:10px 18px}
+.chog-original .chog-nft-stat{width:auto;min-width:0;padding:6px 0;grid-column:auto}
+
+/* Token-bound experience. Matches the existing monochrome frame and role palette. */
+.chog-profile-progress{grid-column:1/-1;min-width:0;padding:.65em .8em;border:1px solid #ffffff55;border-radius:8px;background:#110e20b8;color:#f6f0ff;font:800 12px/1.4 ChogText,sans-serif}
+.chog-profile-progress__head{display:flex;align-items:center;justify-content:space-between;gap:12px}.chog-profile-progress__head strong{color:#ffd17e;font-size:15px}.chog-profile-progress__track{height:9px;overflow:hidden;background:#080612;border:1px solid #ffffff40;border-radius:8px;margin:6px 0}.chog-profile-progress__track i{display:block;height:100%;background:linear-gradient(90deg,#2489ed,#a679ff)}.chog-profile-progress small{display:block;font-size:10px;color:#d8c9ea;letter-spacing:.035em}.chog-exp-sync{margin-top:3px}.chog-armory-hero:has(.chog-profile-progress){grid-template-rows:auto auto minmax(100px,1fr) auto}.chog-armory-hero .chog-profile-progress{align-self:start;width:100%}
+
+.chog-match-experience{position:absolute;left:24px;bottom:24px;z-index:3;width:min(290px,36vw);padding:16px 18px;border:2px solid #fff;border-radius:12px;background:#171322ec;color:#fff;font:800 12px/1.6 ChogText,sans-serif;pointer-events:none}.chog-match-experience>strong{display:block;font:400 30px/1.2 ChogDisplay,sans-serif;color:#ffd17e;margin-bottom:8px}.chog-match-experience>div{display:flex;justify-content:space-between;gap:16px}.chog-match-experience b{color:#b9d8ff}.chog-last-exp{color:#ffd17e!important}
+
+/* Compact wallet actions and automatic EXP status. */
+.chog-profile-stats{display:flex;align-items:center;gap:18px;margin-top:5px;font:800 11px/1.4 ChogText,sans-serif;color:#d8c9ea}.chog-profile-stats>span{display:inline-flex;align-items:center;gap:5px}.chog-profile-stats i{display:inline-flex;width:16px;height:16px;color:#ffd17e}.chog-profile-stats svg{width:100%;height:100%}.chog-original .chog-profile-sync{grid-column:1/-1;display:block;margin:0;padding:0 2px;color:#a99ab8;font:700 9px/1.3 ChogText,sans-serif;letter-spacing:0;text-transform:none}
+.chog-claim-menu .iw-modal__card{position:relative;width:min(340px,calc(100vw - 36px));min-width:0;padding:22px;border:2px solid #f9f4ff;border-radius:16px;background:linear-gradient(135deg,#30213e,#171322);box-shadow:0 8px 0 #0c0914}.chog-claim-menu .iw-modal__title{font-size:30px;margin:0 0 6px}.chog-claim-menu .iw-modal__text{font-size:12px;margin:0 0 14px}.chog-claim-menu .iw-modal__btns{display:flex;flex-direction:column;gap:10px;margin:0}.chog-claim-menu .chog-claim-option{width:100%;height:auto;min-height:58px;padding:8px 12px;margin:0;rotate:0deg!important}.chog-claim-menu .chog-claim-option .iw-btn__label{display:flex;align-items:center;justify-content:flex-start;gap:12px;white-space:normal;text-align:left}.chog-claim-option .iw-btn__label>span{display:flex;flex-direction:column;gap:3px}.chog-claim-option b{font-size:15px}.chog-claim-option small{font:700 10px/1.3 ChogText,sans-serif;opacity:.75}.chog-claim-icon{display:flex;width:25px;height:25px;flex-shrink:0}.chog-claim-icon svg{width:100%;height:100%}.chog-claim-menu .chog-claim-close{position:absolute;top:9px;right:9px;width:30px;height:30px;min-width:0;margin:0;padding:0;font-size:22px}.chog-claim-option:disabled{opacity:.4}
+
+/* Keep compact Profile buttons inside their own cells, including keyboard focus. */
+.chog-original .chog-identity:not(.is-entry) .chog-wallet-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 22px;margin-top:8px;padding:7px 8px 9px;align-items:stretch}
+.chog-original .chog-identity:not(.is-entry) .chog-wallet-action{width:100%;min-height:34px;justify-content:center;box-sizing:border-box;padding:9px 8px;--tilt:0deg}
+.chog-original .chog-identity:not(.is-entry) .chog-wallet-action.is-focus{transform:none}
+.chog-original .chog-identity:not(.is-entry) .chog-wallet-action .iw-btn__label{white-space:nowrap;font-size:11px}
+.chog-withdraw-menu .iw-modal__card{position:relative;width:min(400px,calc(100vw - 36px));min-width:0;padding:26px;border:2px solid #f9f4ff;border-radius:18px;background:linear-gradient(135deg,#30213e,#171322);box-shadow:0 8px 0 #0c0914}
+.chog-withdraw-menu .iw-modal__title{font-size:28px;margin:0 0 22px;text-align:left}
+.chog-withdraw-balance{padding:20px 12px;border:1px solid #ffffff30;border-radius:12px;background:#100c1c;text-align:center;margin-bottom:20px}.chog-withdraw-balance>small{display:block;font:800 10px/1.4 ChogText,sans-serif;letter-spacing:.1em;color:#c9b9de}.chog-withdraw-balance>div{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:9px;margin-top:9px}.chog-withdraw-balance img{width:34px;height:34px;object-fit:contain}.chog-withdraw-balance strong{font:400 clamp(26px,4vw,42px)/1.15 ChogDisplay,sans-serif;color:#ffd17e;overflow-wrap:anywhere;max-width:100%}.chog-withdraw-balance span{font:800 13px/1 ChogText,sans-serif;color:#d6c8e6}
+.chog-withdraw-details{display:grid;grid-template-columns:auto 1fr;gap:8px 18px;margin:0;font:800 12px/1.4 ChogText,sans-serif}.chog-withdraw-details dt{color:#b9aaca;text-align:left}.chog-withdraw-details dd{margin:0;text-align:right;color:#f5eeff}.chog-withdraw-note{margin:15px 0 22px;color:#beafd0;font:700 11px/1.5 ChogText,sans-serif;text-align:left}
+.chog-withdraw-menu .iw-modal__btns{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:22px;margin:0;padding:6px 4px 8px}.chog-withdraw-menu .iw-btn--modal{width:100%;margin:0;padding:12px 8px;min-height:42px;font-size:14px;justify-content:center;transform:none}.chog-withdraw-menu .iw-btn--modal.is-focus{transform:none}.chog-withdraw-menu .iw-btn__label{white-space:normal;text-align:center}.chog-withdraw-menu .chog-claim-close{position:absolute;top:12px;right:12px;width:28px;height:28px;min-width:0;margin:0;padding:0;font-size:20px;justify-content:center}.chog-withdraw-menu .iw-btn--modal:disabled{opacity:.4}
+
+.chog-original .chog-armory .iw-wcard.is-selected{outline:2px solid #ffd17e;outline-offset:3px;background:linear-gradient(135deg,#694725aa,#21162fe8)}
+
+/* Native turntable with a compact trait sheet beside the selected Chog. */
+.chog-original .chog-nft-locker .chog-nft-armory{position:absolute;left:3vw;top:calc(var(--u)*11);bottom:5vh;width:56vw;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:18px;align-items:center;pointer-events:auto}
+.chog-nft-collection{padding:18px;max-height:100%;overflow:auto;display:flex;flex-direction:column;gap:18px;min-width:0}
+.chog-nft-collection__head{display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:12px;letter-spacing:.08em}.chog-nft-collection__head small{font-size:10px;color:#c1b7cf}
+.chog-nft-locker .chog-nft-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;overflow:visible;padding:5px}
+.chog-original .chog-nft-locker .chog-nft-option{width:100%;min-width:0;height:auto;margin:0;padding:12px 6px;box-sizing:border-box}
+.chog-original .chog-nft-locker .chog-nft-option .iw-btn__icon{width:min(8vw,110px);height:min(8vw,110px)}
+.chog-nft-locker .chog-nft-option.is-selected{outline:2px solid #fff;outline-offset:3px;background:#67459b66}
+.chog-original .chog-nft-locker .chog-nft-details{position:relative;inset:auto;width:auto;flex:none;padding:18px;max-height:100%;overflow:auto;box-sizing:border-box}
+.chog-original .chog-nft-locker .chog-nft-details h2{font-size:clamp(18px,1.7vw,28px);margin:8px 0 14px}
+.chog-nft-locker .chog-nft-stat-list{grid-template-columns:1fr;gap:7px}
+.chog-original .chog-nft-locker .chog-nft-stat{grid-template-columns:minmax(0,1fr) auto;gap:5px;padding:5px 0}
+.chog-nft-locker .chog-nft-stat .iw-stat__bar{display:block;width:100%;height:8px;grid-column:1;align-self:center}
+.chog-nft-locker .chog-nft-stat strong{font-size:12px;overflow-wrap:anywhere}.chog-nft-locker .chog-nft-stat small{font-size:9px;align-self:center}
+.chog-nft-locker .chog-nft-stat .iw-stat__label{font-size:9px}
+.chog-nft-locker .iw-lspin{left:60vw;right:3vw;bottom:3vh;font-size:12px}
+.chog-nft-enter{animation:chog-nft-sheet-in .65s var(--spring) both}
+@keyframes chog-nft-sheet-in{from{opacity:0;transform:translate3d(36px,18px,0) rotate(2deg) scale(.94)}to{opacity:1;transform:none}}
+@media(max-width:800px){.chog-original .chog-nft-locker .chog-nft-armory{left:2vw;width:57vw;gap:9px;grid-template-columns:minmax(0,1fr);align-content:start;overflow:auto}.chog-nft-collection{padding:12px}.chog-nft-locker .chog-nft-stat-list{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px 12px}.chog-original .chog-nft-locker .chog-nft-details{overflow:visible;max-height:none}.chog-nft-locker .chog-nft-list{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(prefers-reduced-motion:reduce){.chog-nft-enter{animation:none}.chog-nft-locker .iw-stat__fill{transition:none}}
+
+.chog-nft-locker .chog-nft-stat-list{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 14px}
+.chog-nft-locker .chog-nft-stat strong{min-height:2.5em;display:flex;align-items:center;line-height:1.25}
+.chog-original .chog-nft-locker .chog-nft-details{max-height:76vh}
+
+/* Native ten-slot locker, with cached studio portraits instead of ten live rigs. */
+.chog-original .chog-nft-locker .chog-nft-armory{width:65vw;grid-template-columns:minmax(0,2.15fr) minmax(0,1fr);gap:16px}
+.chog-nft-locker .chog-nft-collection{display:flex;padding:calc(var(--u)*1.1);gap:14px;overflow:visible}
+.chog-nft-locker .chog-nft-list{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:calc(var(--u)*.7);padding:0;overflow:visible}
+.chog-nft-locker .chog-nft-tile{min-width:0;aspect-ratio:.86}
+.chog-nft-locker .chog-nft-tile .iw-ltile__name{font-size:clamp(9px,.9vw,16px);padding:1.3em .2em .45em}
+.chog-nft-locker .chog-nft-tile .iw-ltile__eq{width:clamp(16px,1.7vw,28px);height:clamp(16px,1.7vw,28px)}
+.chog-nft-locker .chog-nft-tile .iw-ltile__pic canvas{width:100%;height:100%;object-fit:contain}
+.chog-nft-locker .chog-nft-tile__sign{width:125%;height:115%;aspect-ratio:auto}
+.chog-nft-tile__sign .chog-heading-sign{width:100%;height:100%;object-fit:contain;animation:chog-nft-sign-idle 3.4s ease-in-out infinite}
+.chog-nft-locker .chog-nft-tile.is-on .chog-nft-tile__sign{transform:scale(1) rotate(0)}
+.chog-nft-locker .chog-nft-tile.is-empty{cursor:default;opacity:1}
+.chog-nft-empty{position:absolute;inset:23%;color:#d4d1db;opacity:.4;pointer-events:none}.chog-nft-empty svg{width:100%;height:100%}
+.chog-nft-locker .chog-nft-details__head{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.chog-nft-details__head>img{width:52px;height:52px;object-fit:cover;flex:none;border-radius:10px;border:2px solid #cbb1ed}
+.chog-original .chog-nft-locker .chog-nft-details__head h2{font-size:clamp(13px,1.25vw,22px);margin:4px 0;line-height:1.15}
+.chog-nft-locker .chog-nft-details .iw-wd__kind{font-size:9px;letter-spacing:.1em}
+.chog-original .chog-nft-locker .chog-nft-details{padding:14px;max-height:66vh}
+.chog-nft-locker .chog-nft-stat-list{gap:4px 10px}
+.chog-original .chog-nft-locker .chog-nft-stat{padding:3px 0;gap:3px}
+.chog-nft-locker .chog-nft-stat strong{font-size:10px;min-height:2em;line-height:1.2}
+.chog-nft-locker .chog-nft-stat small{font-size:8px}
+.chog-nft-locker .chog-nft-stat .iw-stat__label{font-size:8px}
+.chog-nft-locker .chog-nft-stat .iw-stat__bar{height:6px}
+.chog-nft-pages{display:flex;align-items:center;justify-content:center;gap:15px;font-size:11px}.chog-nft-pages .iw-btn{min-width:45px}
+.chog-nft-locker .iw-lspin{left:69vw}
+@keyframes chog-nft-sign-idle{0%,100%{transform:rotate(-5deg) scale(.97)}50%{transform:rotate(5deg) scale(1.04)}}
+@media(max-width:1000px){.chog-original .chog-nft-locker .chog-nft-armory{width:64vw;grid-template-columns:1fr;align-content:center;overflow:auto}.chog-original .chog-nft-locker .chog-nft-details{max-height:none}.chog-nft-locker .chog-nft-stat-list{grid-template-columns:repeat(4,minmax(0,1fr))}.chog-nft-locker .chog-nft-tile{aspect-ratio:1}.chog-nft-locker .chog-nft-list{grid-template-columns:repeat(5,minmax(0,1fr))}}
+@media(prefers-reduced-motion:reduce){.chog-nft-tile__sign .chog-heading-sign{animation:none}}
+
+.chog-nft-locker .chog-nft-collection .iw-lsec__title{margin-bottom:calc(var(--u)*1.1)}
+
+/* The Chog grid retains native locker dimensions; traits size to their content. */
+.chog-original .chog-nft-locker .chog-nft-armory{left:calc(var(--u)*3.6 + var(--sal));top:calc(var(--u)*10.4);bottom:auto;width:calc(96vw - var(--u)*3.6);grid-template-columns:min(calc(var(--u)*57),58vw) minmax(0,1fr);gap:16px;align-items:start;pointer-events:none}
+.chog-original .chog-nft-locker .chog-nft-collection,.chog-original .chog-nft-locker .chog-nft-details{height:auto;max-height:calc(100vh - var(--u)*13);min-height:0;box-sizing:border-box;overflow:auto;margin:0;align-self:start;justify-content:flex-start;pointer-events:auto}
+.chog-original .chog-nft-locker .chog-nft-collection{width:100%}
+.chog-original .chog-nft-locker .chog-nft-details{width:min(100%,16vw,300px);padding:14px;display:block}
+.chog-nft-locker .chog-nft-details__head .chog-avatar-frame{width:52px;height:52px;flex:none;float:none;margin:0;border-radius:12px}
+.chog-nft-locker .chog-nft-details__head .chog-avatar-frame img{width:100%;height:100%;object-fit:cover}
+.chog-nft-locker .chog-nft-tile .iw-ltile__name{font-size:calc(var(--u)*1.05)}
+.chog-nft-locker .chog-nft-details__head{margin-bottom:10px}
+@media(max-width:1000px){.chog-original .chog-nft-locker .chog-nft-armory{width:94vw;grid-template-columns:58vw minmax(0,1fr);gap:12px;align-content:start;overflow:visible}.chog-nft-locker .chog-nft-stat-list{grid-template-columns:repeat(2,minmax(0,1fr))}.chog-nft-locker .chog-nft-details__head{flex-wrap:wrap}.chog-nft-locker .chog-nft-tile .iw-ltile__name{font-size:10px}}
+
+/* Online uses Quick Play equipment chips beside the native room-code ticket. */
+.chog-online .iw-hubcard--join{position:relative}
+.chog-online .iw-code{width:48%;display:block;margin-bottom:calc(var(--u)*1.2)}
+.chog-online .chog-join-code{padding:calc(var(--u)*1) calc(var(--u)*.7);width:100%;box-sizing:border-box;pointer-events:auto}
+.chog-online .chog-join-code .iw-rc__tiles{gap:calc(var(--u)*.35);width:100%}
+.chog-online .hunt-room-digit{min-width:0;flex:1;width:0;height:calc(var(--u)*3.6);font-size:calc(var(--u)*2.3);border:0;padding:0;text-align:center;outline:none;caret-color:#783ee8;text-transform:uppercase;pointer-events:auto}
+.chog-online .hunt-room-digit:focus{box-shadow:0 0 0 3px #ffb239,inset 0 -5px #ddd8ea}
+.chog-online .chog-join-equipment{position:absolute;right:calc(var(--u)*1.5);bottom:calc(var(--u)*1.5);width:44%;display:flex;flex-direction:column;gap:calc(var(--u)*.7)}
+.chog-online .chog-join-equipment>*{width:100%;min-width:0;box-sizing:border-box;margin:0}
+.chog-online .chog-join-equipment .iw-wchip{height:calc(var(--u)*4.3)}
+.chog-online .chog-join-equipment .iw-btn{height:calc(var(--u)*4);min-height:0;font-size:calc(var(--u)*1.15);padding:calc(var(--u)*.7)}
+.chog-online .chog-join-equipment .iw-btn__sub{font-size:calc(var(--u)*.65)}
+.chog-room-pips .chog-room-slot{min-width:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;padding:8px 3px}
+.chog-room-slot>i,.chog-room-slot>img{display:block;width:30px;height:30px;object-fit:cover;border-radius:5px}.chog-room-slot>i{color:#bfb1d0}.chog-room-slot svg{width:100%;height:100%}
+.chog-room-slot>b{display:block;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:9px}
+.chog-room-pips .chog-room-slot.is-empty{background:#44335577}
+.chog-hunt-lobby .iw-rc__row{gap:calc(var(--u)*.8)}
+.chog-hunt-lobby .iw-rc__copy{display:inline-flex;font-size:calc(var(--u)*.9);height:calc(var(--u)*3);padding:0 .6em}
+.chog-hunt-lobby .iw-rc__copy .iw-hint{display:none}

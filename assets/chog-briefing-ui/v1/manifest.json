@@ -1,0 +1,55 @@
+{
+  "version": 1,
+  "generation": "built-in image_gen; original alpha preserved",
+  "sharedFrame": "board.png",
+  "dynamicFields": [
+    "roleHeading",
+    "playerName",
+    "nftId",
+    "portraitUrl",
+    "traits[].iconUrl",
+    "traits[].name"
+  ],
+  "assets": {
+    "board.png": {
+      "width": 1295,
+      "height": 1215,
+      "mode": "RGBA",
+      "alphaRange": [
+        0,
+        255
+      ],
+      "source": "exec-dd7e496b-e873-4b81-b8dd-736108cb8594.png"
+    },
+    "image-frame.png": {
+      "width": 1254,
+      "height": 1254,
+      "mode": "RGBA",
+      "alphaRange": [
+        0,
+        255
+      ],
+      "source": "exec-56a70bda-4439-4923-bc4d-d3cc0c7bb844.png"
+    },
+    "nameplate.png": {
+      "width": 2172,
+      "height": 724,
+      "mode": "RGBA",
+      "alphaRange": [
+        0,
+        255
+      ],
+      "source": "exec-e58868d8-24a8-481a-b7c8-85d46ba802cd.png"
+    },
+    "title-backing.png": {
+      "width": 2172,
+      "height": 724,
+      "mode": "RGBA",
+      "alphaRange": [
+        0,
+        255
+      ],
+      "source": "exec-54ab9543-1b6f-47f3-8d16-91e796b18750.png"
+    }
+  }
+}

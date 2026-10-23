@@ -1,0 +1,39 @@
+import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';import os from 'node:os';import path from 'node:path';import ganache from 'ganache';import {BrowserProvider,Wallet,ContractFactory,Contract,parseEther}from 'ethers';
+import {RewardService,WITHDRAWAL_TYPES}from '../../../server/rewards/service.mjs';
+const vaultArtifact=JSON.parse(fs.readFileSync(new URL('../../../assets/chog-testnet/reward-vault.json',import.meta.url))),demo=JSON.parse(fs.readFileSync(new URL('../../../assets/chog-testnet/contracts.json',import.meta.url)));
+test('vault + persistent server ledger: verified rewards, auth, reservations, actual ERC20 settlement, replay protection and refunds',async()=>{
+ const engine=ganache.provider({chain:{chainId:10143},logging:{quiet:true},wallet:{totalAccounts:4}}),provider=new BrowserProvider(engine,undefined,{cacheTimeout:-1}),dir=fs.mkdtempSync(path.join(os.tmpdir(),'chog-reward-test-'));let service;
+ try{const owner=await provider.getSigner(0),other=await provider.getSigner(1),authority=Wallet.createRandom(),ownerKey=new Wallet(engine.getInitialAccounts()[owner.address.toLowerCase()].secretKey);
+ const token=await new ContractFactory(demo.TestChog.abi,demo.TestChog.bytecode,owner).deploy(owner.address);await token.waitForDeployment();const vault=await new ContractFactory(vaultArtifact.abi,vaultArtifact.bytecode,owner).deploy(await token.getAddress(),authority.address,owner.address);await vault.waitForDeployment();await(await token.transfer(await vault.getAddress(),parseEther('100'))).wait();
+ service=new RewardService({dataDir:dir,provider,signer:authority,token:await token.getAddress(),operator:owner.address,vault:await vault.getAddress()});const nft=await new ContractFactory(demo.ChogDemoNFT.abi,demo.ChogDemoNFT.bytecode,owner).deploy(owner.address,demo.demoTokenURI);await nft.waitForDeployment();service.assets.nft=await nft.getAddress();assert.equal(await service.canCarry(owner.address),true);assert.equal(await service.canCarry(other.address),false);await(await nft.transferFrom(owner.address,other.address,1)).wait();assert.equal(await service.canCarry(owner.address),false);assert.equal(await service.canCarry(other.address),true);
+ const origin='http://127.0.0.1:8803';const c=service.issueChallenge(owner.address,origin),signature=await ownerKey.signMessage(c.message),login=service.login(c.nonce,signature,origin);assert.equal(service.auth(login.token),owner.address.toLowerCase());assert.throws(()=>service.login(c.nonce,signature,origin));assert.throws(()=>service.auth('forged'));
+ const bad=service.issueChallenge(owner.address,origin);assert.throws(()=>service.login(bad.nonce,signature,'https://evil.example'));
+ assert.equal(service.account(owner.address).balance,0);assert.throws(()=>service.ledger.claim(owner.address,'browser-forged-round'));
+ const room={code:'VERIFY',roundId:'round-server',verified:true,roster:[{nid:0,wallet:owner.address}]};service.ledger.start(room);assert.throws(()=>service.ledger.reserve(owner.address,1,9999999999,0),/active match/);
+ const snap={core:{roundId:room.roundId,phase:'playing'},players:[['hunt-0',{earned:4000,purchases:1}]]};service.ledger.observe(room,snap);service.ledger.observe(room,snap);assert.equal(service.account(owner.address).balance,1000);assert.throws(()=>service.ledger.observe({...room,verified:false},snap));
+ snap.core={roundId:room.roundId,phase:'finished',winner:'hunt-0',result:{players:[{id:'hunt-0',left:false}]}};service.ledger.observe(room,snap);assert.ok(service.ledger.claim(owner.address,room.roundId));assert.equal(service.ledger.claim(owner.address,room.roundId),false);assert.equal(service.account(owner.address).balance,21000);
+ const issued=await service.withdraw(owner.address,5000),v=issued.voucher;assert.equal(service.account(owner.address).balance,16000);assert.equal((await service.withdraw(owner.address,5000)).voucher.requestId,v.requestId);
+ const args=[v.wallet,v.amount,v.requestId,v.deadline,v.epoch,v.signature];await assert.rejects(vault.connect(other).withdraw.staticCall(...args));await assert.rejects(vault.withdraw.staticCall(v.wallet,BigInt(v.amount)+1n,v.requestId,v.deadline,v.epoch,v.signature));
+ const wrongDomain=await authority.signTypedData({...service.domain(),chainId:143},WITHDRAWAL_TYPES,v);await assert.rejects(vault.withdraw.staticCall(v.wallet,v.amount,v.requestId,v.deadline,v.epoch,wrongDomain));
+ const before=await token.balanceOf(owner.address),tx=await vault.withdraw(...args);await tx.wait();await engine.request({method:'evm_mine',params:[]});await engine.request({method:'evm_mine',params:[]});assert.equal(await token.balanceOf(owner.address)-before,parseEther('5'));await assert.rejects(vault.withdraw.staticCall(...args));await service.reconcile(owner.address,tx.hash);assert.equal(service.account(owner.address).pending,null);assert.equal(service.account(owner.address).balance,16000);
+ const pending=await service.withdraw(owner.address,1000);assert.equal(service.account(owner.address).balance,15000);await(await vault.setPaused(true)).wait();await assert.rejects(vault.withdraw.staticCall(pending.voucher.wallet,pending.voucher.amount,pending.voucher.requestId,pending.voucher.deadline,pending.voucher.epoch,pending.voucher.signature));await(await vault.setPaused(false)).wait();
+ await engine.request({method:'evm_increaseTime',params:[700]});for(let i=0;i<4;i++)await engine.request({method:'evm_mine',params:[]});await service.reconcile(owner.address);assert.equal(service.account(owner.address).balance,16000);await service.reconcile(owner.address);assert.equal(service.account(owner.address).balance,16000);
+ const stale=await service.withdraw(owner.address,1000);await(await vault.setRewardSigner(other.address)).wait();const a=stale.voucher;await assert.rejects(vault.withdraw.staticCall(a.wallet,a.amount,a.requestId,a.deadline,a.epoch,a.signature));await engine.request({method:'evm_increaseTime',params:[700]});for(let i=0;i<4;i++)await engine.request({method:'evm_mine',params:[]});await service.reconcile(owner.address);assert.equal(service.account(owner.address).balance,16000);
+ service.ledger.close();service.ledger=null;
+ const {RewardLedger}=await import('../../../server/rewards/ledger.mjs');const reopened=new RewardLedger(path.join(dir,'ledger.sqlite'));assert.equal(reopened.account(owner.address).balance,16000);reopened.close();
+ }finally{service?.ledger?.close();await engine.disconnect();assert.ok(dir.startsWith(path.join(os.tmpdir(),'chog-reward-test-')));fs.rmSync(dir,{recursive:true,force:true});}
+});
+test('reward vault rejects mainnet deployment',async()=>{const engine=ganache.provider({chain:{chainId:143},logging:{quiet:true}});try{const signer=await new BrowserProvider(engine,undefined,{cacheTimeout:-1}).getSigner();await assert.rejects(new ContractFactory(vaultArtifact.abi,vaultArtifact.bytecode,signer).deploy(signer.address,signer.address,signer.address));}finally{await engine.disconnect();}});
+
+
+test('expiry uses confirmed-block used state, including a withdrawal mined during reconciliation',async()=>{
+ for(const paid of [true,false]){
+  const service=Object.create(RewardService.prototype),settlements=[],reads=[];
+  service.vaultAddress='vault';service.confirmations=2;
+  service.provider={getBlockNumber:async()=>12,getBlock:async()=>({number:10,timestamp:1100})};
+  service.ledger={pending:()=>({id:'request',deadline:1000}),settle:(id,status)=>settlements.push({id,status})};
+  service.verifyVault=async()=>({used:async(id,options)=>{reads.push(options?.blockTag??'latest');return options?paid:false;}});
+  service.account=()=>({});await service.reconcile('wallet');
+  assert.deepEqual(reads,['latest',10]);assert.deepEqual(settlements,[{id:'request',status:paid?'confirmed':'expired'}]);
+ }
+});

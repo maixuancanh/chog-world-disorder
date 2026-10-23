@@ -1,0 +1,43 @@
+{
+  "chest": {
+    "source": "treasure_chest_3d_model.glb",
+    "sha256": "56a56e1e497e5f68caec50aa055d2a659a938b95478659d2e7d74181ddb4f7c3",
+    "originalVertices": 27788,
+    "gameVertices": 26220,
+    "triangles": 45000,
+    "bounds": [
+      [
+        -1.1750000715255737,
+        -0.7619169354438782,
+        0.0
+      ],
+      [
+        1.1750000715255737,
+        0.7619169354438782,
+        1.9075731039047241
+      ]
+    ],
+    "height": 1.9075731039047241,
+    "fragments": 18
+  },
+  "platform": {
+    "source": "orange_sci-fi_platform_3d_model.glb",
+    "sha256": "414ee8e7fc06c34a537d0ec2af0a5bddcbf6253276e6f8c09cc6b49131c93bdf",
+    "originalVertices": 28068,
+    "gameVertices": 26661,
+    "triangles": 44999,
+    "bounds": [
+      [
+        -2.125,
+        -2.105870246887207,
+        -7.80793016019743e-06
+      ],
+      [
+        2.125,
+        2.105870246887207,
+        1.6701866388320923
+      ]
+    ],
+    "height": 1.6701866388320923
+  }
+}

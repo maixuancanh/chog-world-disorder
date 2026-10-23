@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chog · Testnet setup</title>
+<style>
+@font-face{font-family:ChogDisplay;src:url('./assets/fonts/LilitaOne-Regular.ttf')}@font-face{font-family:ChogText;src:url('./assets/fonts/NunitoSans-Variable.ttf')}
+:root{--u:16px;--fs-xs:14px;--fs-s:16px;--fs-m:18px}*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top,#432770,#110c20 75%);color:#fff;font:700 16px/1.5 ChogText,sans-serif;min-height:100vh}main{max-width:1100px;margin:auto;padding:36px 24px}header{margin-bottom:28px}h1{font:400 clamp(30px,5vw,54px)/1.1 ChogDisplay;margin:16px 0}header p{color:#d6c8ea}a{color:#ffd17e}button,select{font:inherit}button{cursor:pointer;background:#362147;color:#fff;border:2px solid #9270bd;border-radius:12px;box-shadow:0 4px 0 #0d0816;padding:10px 16px}button:focus-visible,a:focus-visible,select:focus-visible{outline:3px solid #ffd17e;outline-offset:4px}button:disabled{opacity:.5;cursor:wait}.iw-btn--primary{background:#ffb43b;color:#1c122a;border-color:#ffe1a5}.iw-display{font-family:ChogDisplay,sans-serif}.chog-wallet-body{display:grid;grid-template-columns:.85fr 1.15fr;gap:24px;align-items:start}.chog-wallet-card{padding:26px;background:linear-gradient(135deg,#302044,#191124);border:2px solid #9f80d7;border-radius:24px;min-width:0;box-shadow:0 8px 0 #0a0614}.chog-wallet-kicker{color:#c8b4ea;letter-spacing:.12em;font-size:13px}.chog-wallet-portrait{width:200px;max-width:100%;height:200px;margin:24px auto;background:#4b296a;border:3px solid #ffbf5c;border-radius:22%;display:grid;place-items:center}.chog-wallet-portrait img{width:90%;height:90%;object-fit:contain}.chog-wallet-badge{font-size:12px;border:1px solid #9f80d7;background:#4c2c6d;padding:6px 9px;border-radius:8px;display:inline-block}.chog-wallet-muted{font-size:14px;color:#d2c5e1}.chog-wallet-amount{font:400 48px/1.2 ChogDisplay;color:#ffd17e;margin:18px 0}.chog-wallet-amount small{display:block;font:800 18px ChogText;color:#fff}.chog-wallet-actions{display:flex;flex-wrap:wrap;gap:12px;margin:20px 0}.chog-wallet-action{font-size:13px}.chog-wallet-status{padding:12px;border-left:3px solid #ffbf5c;border-radius:6px;background:#110c20;color:#ffe0a2;font-size:14px;overflow-wrap:anywhere}.chog-wallet-status:empty{display:none}.chog-wallet-contracts{display:flex;flex-wrap:wrap;gap:12px;font-size:14px}.chog-wallet-faucet{font-size:14px}.chog-token-input{display:block;width:100%;padding:10px;margin-top:16px;background:#302044;color:white;border:2px solid #9f80d7;border-radius:10px}.chog-admin-addresses{overflow-wrap:anywhere;font-size:14px}.chog-admin-addresses dt{color:#c8b4ea;margin-top:12px}.chog-admin-addresses dd{margin-left:0}dialog{max-width:650px;color:white;background:#241733;border:2px solid #9f80d7;border-radius:20px;padding:28px}dialog::backdrop{background:#000a}.wallet-picker{display:flex;gap:12px;flex-wrap:wrap}@media(max-width:700px){.chog-wallet-body{grid-template-columns:1fr}}
+.chog-wallet-tile{width:110px;height:110px}.chog-wallet-tile .iw-btn__label{display:flex;align-items:center;flex-direction:column;gap:8px}.chog-wallet-logo{width:48px;height:48px;object-fit:contain}.chog-wallet-logo-fallback{font-size:36px}.chog-wallet-close{position:absolute;right:10px;top:10px;padding:4px 12px}.iw-modal__card{padding-top:18px}.iw-modal__btns{margin-top:24px}.chog-wallet-body{display:block}
+</style>
+</head>
+<body>
+<main id="wallet-setup">
+<header><a href="./">← BACK TO GAME</a><h1>CHOG TESTNET SETUP</h1><p>Connect the original deployment wallet to manage the game reward treasury and the 10 testCHOG wallet faucet on Monad testnet.</p></header>
+<div class="chog-wallet-body" aria-label="Testnet wallet assets"></div>
+<section class="chog-wallet-card chog-reward-admin" aria-label="Game reward treasury administration" style="margin-top:28px"></section>
+<section class="chog-wallet-card chog-faucet-admin" aria-label="10 CHOG faucet administration" style="margin-top:28px"></section>
+<section class="chog-wallet-card chog-progression-admin" aria-label="NFT EXP administration" style="margin-top:28px"></section>
+<noscript>Enable JavaScript to connect your wallet.</noscript>
+</main>
+<script type="module" src="./src/ui/chog-testnet-setup.js"></script>
+</body>
+</html>

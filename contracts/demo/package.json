@@ -1,0 +1,20 @@
+{
+  "name": "chog-testnet-demo",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs",
+    "build:game": "node build-game.mjs",
+    "test": "node --test test/*.test.mjs",
+    "build:rewards": "node build-rewards.mjs",
+    "build:faucet": "node build-faucet.mjs",
+    "build:progression": "node build-progression.mjs"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "5.4.0",
+    "ethers": "6.16.0",
+    "solc": "0.8.30",
+    "esbuild": "0.25.12",
+    "ganache": "7.9.2"
+  }
+}
